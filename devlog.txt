@@ -56,13 +56,24 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
+
 2018-1-4:
-James, Kathleen: made flow chart, edited proposal
-Puneet: UML diagram
+--------------------------------------------------------------
+James, Kathleen:: made flow chart, edited proposal
+Puneet:: UML diagram
+=============================================================
+
 2018-1-3:
-James: added to devlog, added plan 
-Puneet: added .gitignore,devlog.txt
+--------------------------------------------------------------
+James:: added to devlog, added plan 
+Kathleen:: added .gitignore,devlog.txt
+=============================================================
+
 2018-1-2:
-James, Puneet, Kathleen: added proposal.pdf to git repo!
+--------------------------------------------------------------
+James, Puneet, Kathleen:: added proposal.pdf to git repo!
+=============================================================
+
 2018-1-1:
-James, Puneet, Kathleen: finalized project idea(card game)
+James, Puneet, Kathleen:: finalized project idea(card game)
+=============================================================
