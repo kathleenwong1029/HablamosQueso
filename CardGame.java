@@ -18,7 +18,7 @@ public  class CardGame {
     }
 	
     /*/methods
-    public abstract int classifyHand(ArrayList myCard);
+   
     public abstract void getInstructions();
     public abstract void deal();
     //public abstract int placeBet();(added with gambling)*/
