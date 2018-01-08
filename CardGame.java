@@ -1,6 +1,6 @@
 import java.lang.Math;
 import java.util.ArrayList;
-public  class CardGame {
+public abstract  class CardGame {
     //instance vars
     protected Card[] deck=new Card[52];//deck of cards
     public Card[] hand;//the cards the player has
@@ -17,9 +17,9 @@ public  class CardGame {
 	}
     }
 	
-    /*/methods
+    //methods
    
-    public abstract void getInstructions();
+    public abstract String getInstructions();
     public abstract void deal();
     //public abstract int placeBet();(added with gambling)*/
     
@@ -44,12 +44,12 @@ public  class CardGame {
 	}
 	return retu;
     }
-    public static void main(String[] args) {
+    /*    public static void main(String[] args) {
 	CardGame jav=new CardGame();
 	jav.toString();
 	System.out.println(jav.printArray(jav.deck));
 	jav.shuffle(jav.deck);
 	System.out.println(jav.printArray(jav.deck));
 	    
-    }
+	}*/
 }

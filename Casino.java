@@ -1,7 +1,7 @@
 import cs1.Keyboard;
 public class Casino {
     //instance var
-    
+    public String hallOFFame;
     //constructor
     public Casino() {
 	//BankAccount default values
@@ -27,14 +27,19 @@ public class Casino {
 	    rob.deal();
 	    System.out.println("These are your cards"+rob.printArray(rob.hand));
 	    while(u==1) {
+		System.out.println("The sum of your cards:"+rob.sum());
 	    System.out.println("Ask dealer for other card?");
 	    System.out.println("1 for yes, 2 for no");
+	    
 	    u=Keyboard.readInt();
 	    if(u==1) {
 		rob.addtohand();
+		 System.out.println("These are your cards"+rob.printArray(rob.hand));
+		 
 	    }
-	    System.out.println("These are your cards"+rob.printArray(rob.hand));
+	    System.out.println("The sum of your cards:"+rob.sum());
 	    }
+	    
 	    System.out.println("These are your cards"+rob.printArray(rob.hand));
 	    System.out.println("The sum of your cards:"+rob.sum());
 	    if(rob.sum()>21) {
@@ -44,7 +49,7 @@ public class Casino {
 		System.out.println("blackjack");
 	    }
 	    else {
-		System.out.println("close");
+		System.out.println("Below 21!");
 	    }
 	    System.out.println("play again? 1 for yes 2 for no");
 	    u=Keyboard.readInt();
@@ -74,8 +79,9 @@ public class Casino {
 	System.out.println("1. continue playing \n 2. Exit casino");
 	int cas;
 	cas=Keyboard.readInt();
-	if(user==2) {
-	    cplay=false;
+	if(cas==2) {
+	    System.out.println("Thanks for playing! Here are your stats:");
+	    break;
 	}
 	}
     }
