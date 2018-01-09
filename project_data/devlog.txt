@@ -54,6 +54,9 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
+2018-1-7:
+-------------------------------------------------------------
+James: first version of blackjack, casino class working.
 2018-1-6:
 --------------------------------------------------------------
 James: added class files! started main class!
