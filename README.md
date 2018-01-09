@@ -2,7 +2,7 @@
 ---
 James Haung, Puneet Johal, Kathleen Wong
 
-## Generation Description
+## General Description
 ---
 Our project is a a simulation of a casino experience. The player can choose to
 play three different card games : Blackjack, Crazy Eights and Texas Hold'em.
