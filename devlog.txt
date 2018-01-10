@@ -54,6 +54,9 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
+2018-01-10
+James: moved things around in Casino and Blackjaack and started TexasHoldEm
+==============================================================
 2018-01-09
 --------------------------------------------------------------
 Kathleen:: first version of crazyeights working in casino class
