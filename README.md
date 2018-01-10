@@ -6,11 +6,11 @@ James Haung, Puneet Johal, Kathleen Wong
 ---
 To see our proposal and uml diagram, go to folder "project_data."
 To play the game, type in:_
----
+
 javac Casino.java
----
+
 followed by 
----
+
 java Casino
 
 
