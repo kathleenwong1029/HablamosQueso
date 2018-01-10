@@ -1,3 +1,8 @@
+Hablamos Queso
+James Huang
+Kathleen Wong
+Puneet Johal
+pd 1
 List of features we want to implement in order of priority:
 1. Card games superclass
 - A subclass for each of the following
