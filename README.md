@@ -1,6 +1,18 @@
 # HablamosQueso
 ---
 James Haung, Puneet Johal, Kathleen Wong
+---
+## Important note
+---
+To see our proposal and uml diagram, go to folder "project_data."
+To play the game, type in:_
+
+javac Casino.java
+
+followed by 
+
+java Casino
+
 
 ## General Description
 ---
@@ -12,7 +24,7 @@ games, such as the slot machine.
 
 ### Instructions
 ---
-As of 1/9/2018, none of games 
+
 To play our game, the user will compile Woo.java , which will list out the games
 available. The user will enter the corresponding game that they want to play
 in the terminal to start that game. If they require instructions, each game will
