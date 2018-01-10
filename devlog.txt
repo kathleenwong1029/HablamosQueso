@@ -57,6 +57,7 @@ yyyy-mm-dd
 2018-01-09
 --------------------------------------------------------------
 Kathleen::first version of crazyeights working in casino class
+James:: created todo.txt
 ==============================================================
 
 2018-01-08

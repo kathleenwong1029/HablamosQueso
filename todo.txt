@@ -1,0 +1,30 @@
+List of features we want to implement in order of priority:
+1. Card games superclass
+- A subclass for each of the following
+	i.Blackjack
+	ii.Texas holdem
+	iii.Crazy Eights
+2. Bank Account system, for future gambling system
+3.Computer Opponent superclass
+-An opponent subclass for each of the following
+	i.Blackjack
+	ii.Texas holdem
+	iii.Crazy Eights
+4.Casino/Gambling System
+
+5. Extras
+- Mini-games on the side
+- Slot machine
+- More card games!
+- Bluff
+- A very limited but functioning chat box
+- Limited graphics
+
+Timeline
+Jan 9th: have the superclass card games in some sort of working condition, also have clearer plan with UML diagram.
+Jan 11th: have phase 1 of the project complete and debugged
+Jan 13th: have phase 2 of the project complete, start phase 3
+Jan 15th: have phase 3 of project complete, start phase 4
+Jan 16th: have phase 4 of the project complete
+Jan 18th: extra stuff started??
+
