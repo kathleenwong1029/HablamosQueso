@@ -5,7 +5,7 @@ public class Woo {
     public static BankAccount myAccount;
     //constructor
     public Woo() {
-	BankAccount myAccount=new BankAccount();
+	myAccount=new BankAccount();
 	
 
 
@@ -18,6 +18,7 @@ public class Woo {
     public static int viewBal() {
 	return myAccount.getBal();
     }
+    
     public void playBlackjack() {
 	boolean bplay=true;
 	
@@ -80,7 +81,7 @@ public class Woo {
     jane.playCrazyEights();
   }
   if (user==4) {
-      viewBal();
+      System.out.println(myAccount);
 	  }
 	System.out.println("1. continue playing \n 2. Exit casino");
 	int cas;

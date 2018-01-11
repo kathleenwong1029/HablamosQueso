@@ -28,6 +28,10 @@ public class BankAccount{
        return "New balance: " + bal + "\nBalance is below 0!";
     }
   }
+    public String toString() {
+	return "your balance:"+getBal()+"\n";
+    }
+   
 
 /*------------------------main method for testing------------------------
   public static void main (String[] args){
