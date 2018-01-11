@@ -1,10 +1,10 @@
 public class BankAccount{
 
-  int bal;
+  public int bal;
 
   //constructor
   public BankAccount(){
-    bal = 0;
+    bal = 500;
   }
 
   //accessor
