@@ -1,16 +1,17 @@
 import cs1.Keyboard;
 import java.util.ArrayList;
 public class Blackjack extends CardGame {
-    private int deckLength=0;
+    private int deckLength=0;//length of the players deck
     public Blackjack() {
-	super();
-	hand=new ArrayList<Card>();
+	super();//inherits default constructor
+	hand=new ArrayList<Card>();//this is the player's array
     }
     public void deal() {
-	shuffle(deck);
-        hand.add(deck.remove(0));
+	shuffle(deck);//shuffles the deck
+	System.out.println(deck);
+        hand.add(deck.remove(0));//adds the Card to hand, removes it from deck
 	
-	hand.add(deck.remove(0));
+	hand.add(deck.remove(0));//does it again because you need 
 	deckLength=2;
     }
     public void addtohand() {
@@ -19,6 +20,7 @@ public class Blackjack extends CardGame {
 	}
 	else {
 	    hand.add(deck.remove(0));
+	    
 	    
 	    deckLength+=1;
 	}
@@ -46,6 +48,7 @@ public class Blackjack extends CardGame {
 		sum+=hand.get(i).getValue();
 	    }
 	}
+	//diag
 	System.out.println("prog run fin");
 	return sum;
     }
@@ -89,8 +92,10 @@ public class Blackjack extends CardGame {
 	    
 
 	    System.out.println("These are your cards\n"+printArray(hand));
+	    System.out.println("This is the sum"+sum());
 	    sum();
 	    int total=sum();
+	    
 	    if(total>21) {
 		System.out.println("OVERFLOW");
 	    }

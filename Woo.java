@@ -55,12 +55,13 @@ public class Woo {
     public void playTexasHoldEm() {
     }
     public void playCrazyEights() {
+	/*
       Card placeholder = new Card(3,3);
       CrazyEight pjelly= new CrazyEight ();
       pjelly.deal();
       System.out.println(pjelly.getInstructions());
       System.out.println(placeholder);
-      pjelly.win(placeholder);
+      pjelly.win(placeholder);*/
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();
