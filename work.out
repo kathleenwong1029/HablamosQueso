@@ -1,0 +1,49 @@
+//HablamosQueso: James Huang, Puneet Johal, Kathleen Wong
+//APCS1 pd1
+//CW68 -- PPMP
+//2018-01-12
+
+1. What is the value of n after the following code is executed? int n=2013; for (int i=0;i<42;i++)     n = (n+5)/3;
+(A) 0 (B) 1 (C) 2 (D) 3 (E) 65
+The answer is A because you are dividing n by 3 42 times and it downcasts the resulting integer resulting in the number eventually being 0
+2. What is the value of a[1] after the following code is executed?
+int[] a = {0,2,4,1,3}; for (int i=0;i<a.length;i++)     a[i] = a[(a[i]+3)%a.length];
+(A) 0 (B) 1 (C) 2 (D) 3 (E) 4
+B
+3. What is the output of the following code: List nums = new ArrayList<Integer>(3); nums.add(new Integer(1)); nums.add(new Integer(2)); nums.add(0,nums.get(1));
+Object x = nums.get(0); Object y = nums.get(1); if (x == y) System.out.println(x + “ is equal to “ + y); else System.out.println(x + “ is NOT equal to “ + y);
+(A) 1 is equal to 2 (B) 1 is NOT equal to 2 (C) 2 is equal to 2
+(D) 2 is NOT equal to 1 (E) IndexOutOfBoundsException
+B
+4. What is the output of this code?
+List cities = new ArrayList(); cities.add("Atlanta"); cities.add("Boston"); for (int i=1; i < cities.size() ; i++)      cities.add(i,"+"); System.out.println(cities);
+(A) [Atlanta, Boston] (B) [Atlanta, +, Boston] (C) [Atlanta, Boston, +]
+(D) [Atlanta, +, Boston, +] (E) No output because the program goes into an infinite loop
+D
+The next two questions refer to the code below:
+public interface InterfaceA { void methodA(); } public interface InterfaceB extends InterfaceA { void methodB(); } public class ClassA implements InterfaceA { public void methodA() { } public void methodB() { } } public class ClassB extends ClassA implements InterfaceB { public ClassB() { } // other methods not shown }
+5. Which methods, at a minimum, must be defined in ClassB for it to compile with no errors?
+(A) methodA (B) methodB (C) methodA and methodB
+(D) methodA, methodB, and toString (E) No particular methods are required
+E
+6. Which of the following statements causes a syntax error?
+(A) InterfaceA obj = new ClassA(); (B) InterfaceB obj = new ClassA(); (C) InterfaceA obj = new ClassB(); (D) InterfaceB obj = new ClassB(); (E) ClassA obj = new ClassB();
+B
+.7. A car dealership needs a program to store information about the cars for sale. For each car, they want to keep track of the following information: number of doors (2 or 4), whether the car has air conditioning, and its average number of miles per gallon. Which of the following is the best design?
+(A) Use one class, Car, which has three data fields: int numDoors, boolean hasAir, and double milesPerGallon. (B) Use four unrelated classes: Car, Doors, AirConditioning, and MilesPerGallon. (C) Use a class Car, which has three subclasses: Doors, AirConditioning, and MilesPerGallon. (D) Use a class Car, which has a subclass Doors, with a subclass AirConditioning, with a subclass MilesPerGallon. (E) Use three classes: Doors, AirConditioning, and MilesPerGallon, each with a subclass Car.
+A
+8. Consider the following declarations. public interface Comparable {  int compareTo(Object other);  } public class SomeClass implements Comparable {   // ...other methods not shown  }
+Which of the following method signatures of compareTo will satisfy the Comparable interface requirement? I public int compareTo(Object other) II public int compareTo(SomeClass other) III public boolean compareTo(Object other)
+(A)  I only (B)  II only (C)  III only (D)  I and II only (E) I, II, and III
+D
+The next two questions refer to the following information:
+Consider the following instance variable and method findLongest with line numbers added for reference. Method findLongest is intended to find the longest consecutive block of the value target occurring in the array nums; however, findLongest does not work as intended.
+For example, if the array nums contains the values  [ 7 , 10 , 10 , 15 , 15 , 15 , 15 , 10 , 10 , 10 , 15 , 10 , 10 ],
+the call findLongest(10) should return 3, the length of the longest consecutive block of 10’s.
+ private int[] nums;   public int findLongest(int target) {   int lenCount = 0;   int maxLen = 0;  Line 1:  for ( int val : nums )  Line 2:  {  Line 3:      if (val == target)  Line 4:      {  Line 5:             lenCount++;  Line 6:      }  Line 7:      else  Line 8:        {  Line 9:          if (lenCount > maxLen)  Line 10:           {  Line 11:               maxLen = lenCount;  Line 12:           }  Line 13:       }  Line 14:  }  Line 15:   if (lenCount > maxLen)  Line 16:   {  Line 17:      maxLen = lenCount;  Line 18:   }  Line 19:   return maxLen;  }
+9. The method findLongest does not work as intended. Which of the following best describes the value returned by a call to findLongest?
+(A) It is the length of the shortest consecutive block of the value target in nums. (B) It is the length of the array nums. (C) It is the number of occurrences of the value target in nums. (D) It is the length of the first consecutive block of the value  target in nums. (E) It is the length of the last consecutive block of the value target in nums.
+C
+10. Which of these changes should be made so that method findLongest will work as intended?
+(A) Insert the statement lenCount = 0; between lines 2 and 3. (B) Insert the statement lenCount = 0; between lines 8 and 9. (C) Insert the statement lenCount = 0; between lines 10 and 11. (D) Insert the statement lenCount = 0; between lines 11 and 12. (E) Insert the statement lenCount = 0; between lines 17 and 18.
+D
