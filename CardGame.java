@@ -29,7 +29,7 @@ public abstract  class CardGame {
      	  //pick an index at random
         randomIndex = (int)( (i+1) * Math.random() );
      	  //swap the values at position i and randomIndex
-        al.set( i, al.set( randomIndex, al.get(i) ) );
+        arr.set( i, arr.set( randomIndex, arr.get(i) ) );
       }
     }
 
