@@ -2,45 +2,42 @@ import java.lang.Math;
 import java.util.ArrayList;
 public abstract  class CardGame {
     //instance vars
-    protected Card[] deck=new Card[52];//deck of cards
-    public Card[] hand;//the cards the player has
-    
-    //constructor
-    public CardGame() {
+    protected ArrayList<Card> deck = new ArrayList<Card>();//deck of cards
+    public ArrayList<Card> hand;//the cards the player has
+
+  //constructor
+  public CardGame() {
 	//initialize deck
-	int counter=0;
-	for(int i=0;i<13;i++) {
+	  for(int i=0;i<13;i++) {
 	    for(int j=0;j<4;j++) {
-		deck[counter]=new Card(i,j);
-		counter++;
-		    }
-	}
-    }
-	
+		    Card c = new Card(i,j);
+        deck.add(c);
+		  }
+	  }
+  }
+
     //methods
-   
+
     public abstract String getInstructions();
     public abstract void deal();
     //public abstract int placeBet();(added with gambling)*/
-    
-       
-    public void shuffle(Card[] deck) {
-	Card storage;
-	int swap1;
-	int swap2;
-	for(int i=0; i<1000; i++) {//does 1000 swaps
-	    swap1=(int)(Math.random()*52);
-	    swap2=(int)(Math.random()*52);
-	    storage=deck[swap1];
-	    deck[swap1]=deck[swap2];
-	    deck[swap2]=storage;
-	}
-	
+
+
+    public void shuffle(ArrayList arr) {
+      int randomIndex;
+      for( int i = arr.size()-1; i > 0; i-- ) {
+     	  //pick an index at random
+        randomIndex = (int)( (i+1) * Math.random() );
+     	  //swap the values at position i and randomIndex
+        al.set( i, al.set( randomIndex, al.get(i) ) );
+      }
     }
-    public String printArray(Card[] deck) {
-	String retu="[";
-	for(int i=0;i<deck.length;i++) {
-	    retu+=deck[i]+",";
+
+    }
+    public String printArray(ArrayList arr) {
+	String retu="";
+	for(int i=0;i<deck.size();i++) {
+	    retu+=deck[i]+"\n";
 	}
 	return retu;
     }
@@ -50,6 +47,6 @@ public abstract  class CardGame {
 	System.out.println(jav.printArray(jav.deck));
 	jav.shuffle(jav.deck);
 	System.out.println(jav.printArray(jav.deck));
-	    
+
 	}*/
 }
