@@ -6,28 +6,28 @@ public class Woo {
     //constructor
     public Woo() {
 	myAccount=new BankAccount();
-	
+
 
 
     }
     public Woo(int game, int difficulty, int balance, int numOfOpponents) {
-	
+
 
     }
     //methods
     public static int viewBal() {
 	return myAccount.getBal();
     }
-    
+
     public void playBlackjack() {
 	boolean bplay=true;
-	
+
 	//future for computer opponent(3) of them
 	//BlackjackOpponent tophie=new BlackjackOpponent();
 	//BlackjackOpponent rob=new BlackjackOpponent();
 	//BlackjackOpponent winpls=new BlackjackOpponent;
-	
-	
+
+
 	while(bplay==true) {
 	    Blackjack bob=new Blackjack();
 	int u=1;
@@ -43,8 +43,8 @@ public class Woo {
 	    System.out.println("you lost!");
 	    myAccount.withdraw(gambleamt);
 	}
-	
-	    
+
+
 	    System.out.println("play again? 1 for yes 2 for no");
 	    u=Keyboard.readInt();
 	    if(u==2) {
@@ -55,13 +55,13 @@ public class Woo {
     public void playTexasHoldEm() {
     }
     public void playCrazyEights() {
-	/*
+
       Card placeholder = new Card(3,3);
       CrazyEight pjelly= new CrazyEight ();
       pjelly.deal();
       System.out.println(pjelly.getInstructions());
-      System.out.println(placeholder);
-      pjelly.win(placeholder);*/
+      System.out.println("playing against:"+placeholder);
+      pjelly.win(placeholder);
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();

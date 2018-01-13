@@ -1,4 +1,6 @@
 import cs1.Keyboard;
+import java.util.ArrayList;
+
 public class CrazyEight extends CardGame{
   private int deckLength;
   private boolean isValidMove = false;
@@ -8,28 +10,23 @@ public class CrazyEight extends CardGame{
   //constructor
   public CrazyEight(){
     super();
-    hand = new Card [5];
     shuffle(deck);
   }
 
   //deals five cards
   public void deal(){
-     hand[0]=deck[0];
-	   hand[1]=deck[1];
-     hand[2]=deck[2];
-	   hand[3]=deck[3];
-     hand[4]=deck[4];
+     hand.add(deck.get(0));
+	   hand.add(deck.get(1));
+     hand.add(deck.get(2));
+	   hand.add(deck.get(3));
+     hand.add(deck.get(4));
      deckLength = 5;
   }
 
   //draw
   public void drawCard(){
-    Card[] newHand=new Card[deckLength+1] ;
-    for(int i=0;i<deckLength;i++){
-      newHand[i]=hand[i];
-    }
-    newHand[deckLength]=deck[cardNum];
-    hand=newHand;
+    hand.add(deck.get(cardNum));
+    cardNum++;
     deckLength++;
   }
 
@@ -42,13 +39,14 @@ public class CrazyEight extends CardGame{
     //if player has no usable cards, they are forced to draw
     while(isValidMove==false){
     while(a>0){
-      if(hand[a].value==8||hand[a].value==other.value||hand[a].symbol==other.symbol){
+      if(hand.get(a).value==8||hand.get(a).value==other.value||hand.get(a).symbol==other.symbol){
         isValidMove=true;
         break;
       }
       if (a==0){
         drawCard();
         cardNum+=1;
+        deckLength++;
         System.out.println("Here's your new deck:");
       }
       a--;
@@ -62,6 +60,7 @@ public class CrazyEight extends CardGame{
       if(draw.equals("yes")){
         drawCard();
         cardNum+=1;
+        deckLength++;
       }
       System.out.println(printArray(hand));
       if(draw.equals("no")){
@@ -73,15 +72,8 @@ public class CrazyEight extends CardGame{
       System.out.println("Which card would you like to discard?");
       int user;
       user=Keyboard.readInt();
-      if(hand[user].value==other.value || hand[user].symbol==other.symbol){
-        Card[] nHand=new Card[deckLength-1];
-        for(int i =0;i<user;i++){
-          nHand[i]=hand[i];
-        }
-        for(int i =hand.length-1;i>user;i--){
-          nHand[i-1]=hand[i];
-        }
-        hand = nHand;
+      if(hand.get(user).value==other.value || hand.get(user).symbol==other.symbol){
+        hand.remove(user);
         deckLength-=1;
         if(win()==true){
           winner=true;
