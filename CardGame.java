@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public abstract  class CardGame {
     //instance vars
     protected ArrayList<Card> deck = new ArrayList<Card>();//deck of cards
-    public ArrayList<Card> hand;//the cards the player has
+    public ArrayList<Card> hand = new ArrayList<Card>();//the cards the player has
 
   //constructor
   public CardGame() {
 	//initialize deck
-	  for(int i=0;i<13;i++) {
+	  for(int i=1;i<14;i++) {
 	    for(int j=0;j<4;j++) {
 		    Card c = new Card(i,j);
         deck.add(c);
@@ -33,20 +33,13 @@ public abstract  class CardGame {
       }
     }
 
-    
-    public String printArray(ArrayList arr) {
+
+  public String printArray(ArrayList arr) {
 	String retu="";
 	for(int i=0;i<arr.size();i++) {
 	    retu+=arr.get(i)+"\n";
 	}
 	return retu;
     }
-    /*    public static void main(String[] args) {
-	CardGame jav=new CardGame();
-	jav.toString();
-	System.out.println(jav.printArray(jav.deck));
-	jav.shuffle(jav.deck);
-	System.out.println(jav.printArray(jav.deck));
 
-	}*/
 }
