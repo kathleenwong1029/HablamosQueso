@@ -52,16 +52,45 @@ public class Woo {
 	    }
 	}
     }
+
     public void playTexasHoldEm() {
     }
-    public void playCrazyEights() {
 
-      Card placeholder = new Card(3,3);
+    public void playCrazyEights() {
+      boolean won = false;
+      String winner;
       CrazyEight pjelly= new CrazyEight ();
+      CrazyEightOpponent opp1 = new CrazyEightOpponent(opp1);
+      CrazyEightOpponent opp2 = new CrazyEightOpponent(opp2);
+      CrazyEightOpponent opp3 = new CrazyEightOpponent(opp3);
       pjelly.deal();
       System.out.println(pjelly.getInstructions());
-      System.out.println("playing against:"+placeholder);
-      pjelly.win(placeholder);
+      while(won== false){
+      Card stockpile=
+      opp1.turn(stockpile);
+      if (opp1.winner ==true){
+        winner=opp1.name;
+        break;
+      }
+      // opp2.turn(stockpile);
+      // if (opp2.winner ==true){
+      //   winner=opp2.name;
+      //   break;
+      // }
+      // opp3.turn(stockpile);
+      // if (opp3.winner ==true){
+      //   winner=opp3.name;
+      //   break;
+      // }
+      pjelly.win(stockpile);
+      if (pjelly.winner ==true){
+        winner=pjelly;
+        break;
+      }
+
+    }
+      System.out.println(winner + "won!");
+
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();

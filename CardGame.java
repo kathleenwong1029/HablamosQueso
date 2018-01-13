@@ -4,6 +4,7 @@ public abstract  class CardGame {
     //instance vars
     protected ArrayList<Card> deck = new ArrayList<Card>();//deck of cards
     public ArrayList<Card> hand = new ArrayList<Card>();//the cards the player has
+    public ArrayList<Card> stockpile = new Arraylist<Card>();//stockpile need for CrazyEight
 
   //constructor
   public CardGame() {

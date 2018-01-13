@@ -35,27 +35,27 @@ public class CrazyEight extends CardGame{
   }
 
   public String win(Card other){
-    int a = deckLength-1;
-    //if player has no usable cards, they are forced to draw
-    while(isValidMove==false){
-    while(a>0){
-      if(hand.get(a).value==8||hand.get(a).value==other.value||hand.get(a).symbol==other.symbol){
-        isValidMove=true;
-        break;
-      }
-      if (a==0){
-        drawCard();
-        cardNum+=1;
-        deckLength++;
-        System.out.println("Here's your new deck:");
-      }
-      a--;
-    }}
+    // int a = deckLength-1;
+    // //if player has no usable cards, they are forced to draw
+    // while(isValidMove==false){
+    // while(a>0){
+    //   if(hand.get(a).value==8||hand.get(a).value==other.value||hand.get(a).symbol==other.symbol){
+    //     isValidMove=true;
+    //     break;
+    //   }
+    //   if (a==0){
+    //     drawCard();
+    //     cardNum+=1;
+    //     deckLength++;
+    //     System.out.println("Here's your new deck:");
+    //   }
+    //   a--;
+    // }}
 
     while(winner == false){
       System.out.println(printArray(hand));
       while(!(drawAgain==true)) {
-      System.out.println("Would you like to draw?");
+      System.out.println("Do you need to draw?");
       String draw =Keyboard.readString();
       if(draw.equals("yes")){
         drawCard();
