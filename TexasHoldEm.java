@@ -1,12 +1,53 @@
 import cs1.Keyboard;
 import java.util.ArrayList;
+import java.util.HashMap;
 public class TexasHoldEm extends CardGame{
 
   public ArrayList<Card> board = new ArrayList<Card>();
   public int pot;
-  //HashMap for winning hands oooh fancy;
+  public HashMap<String, Integer> possibleCombos = new HashMap<String, Integer>();
 
   //have to make sure I code something in case the deck runs out
+
+//constructy
+  public TexasHoldEm(){
+    super();
+    //add all possible combos to possibleCombo HashMap
+    //Royal Flush
+    possibleCombos.put("AKQJ10", 10);
+    //Straight Flush
+      //have to hardcode to differentiate between Straight Flush and Straight
+    for (int i = 0; i < 9; i++){
+      String key = "";
+      key = "x" + i + (i+1) + (i+2) + (i+3) + (i+4);
+      possibleCombos.put(key, 9);
+    }
+    //Four of a Kind
+    for (int i = 0; i < 14; i++){
+      for (int x = 0; x < 14; x++){
+        String key = "";
+        key = i + i + i + i + x;
+        possibleCombos.put(key, 8);
+      }
+    }
+    //Full House
+    for (int i = 0; i < 14; i++){
+      for (int x = 0; x < 14; x++){
+        String key = "";
+        key = i + i + i + x + x;
+        possibleCombos.put(key, 7);
+      }
+    }
+    //Flush
+      //have to hardcode in win
+    //Straight
+    for (int i = 0; i < 9; i++){
+      String key = "";
+      key = "x" + i + (i+1) + (i+2) + (i+3) + (i+4);
+      possibleCombos.put(key, 9);
+    }
+    //hardcode three of a kind, two pairs, pair, and high card
+  }
 
 //accessors
   public String getHand(){
@@ -54,6 +95,22 @@ public class TexasHoldEm extends CardGame{
     shuffle(deck);
     board.add(deck.get(0));
     deck.remove(0);
+  }
+
+  /*public void placeBet(int x){
+
+  }*/
+
+  public int getComboVal(){
+    ArrayList<Card> combi = new ArrayList<Card>();
+    for (Card c: board){
+      combi.add(c);
+    }
+    for (Card c: hand){
+      combi.add(c);
+    }
+    String combo = printArray(combi);
+
   }
 
 //-------------------------test-------------------------
