@@ -4,12 +4,11 @@ public abstract  class CardGame {
     //instance vars
     protected ArrayList<Card> deck = new ArrayList<Card>();//deck of cards
     public ArrayList<Card> hand = new ArrayList<Card>();//the cards the player has
-    //public ArrayList<Card> stockpile = new Arraylist<Card>();//stockpile need for CrazyEight
 
   //constructor
   public CardGame() {
 	//initialize deck
-	  for(int i=1;i<14;i++) {
+	  for(int i=2;i<14;i++) {
 	    for(int j=0;j<4;j++) {
 		    Card c = new Card(i,j);
         deck.add(c);
@@ -24,7 +23,7 @@ public abstract  class CardGame {
     //public abstract int placeBet();(added with gambling)*/
 
 
-    public void shuffle(ArrayList<Card> arr) {
+    public void shuffle(ArrayList arr) {
       int randomIndex;
       for( int i = arr.size()-1; i > 0; i-- ) {
      	  //pick an index at random
