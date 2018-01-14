@@ -18,6 +18,8 @@ UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 instantiating the same instance of something in a different class
 we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet
+getComboVal method in TexasHoldEm still cannot detect all possible winning hands/combos (still need to add code for Three of a Kind, Full House, Pair, and Two Pairs)
+Need to update UML and flowchart
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -25,13 +27,16 @@ COOL STUFF LEARNED
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2018-1-13: The opponent interface will be added in at a later date
+2018-1-13: The opponent interface will be added in at a later date, Texas Hold Em will not use a HashMap
 2018-1-4: We changed the nature of the opponent class to be a separate "player" class that would fall under the interface Opponent.java. EXAMPLE: The class for Poker (the game)and the computer opponent for that game will be in separate classes. This will be the easiest way to implement opponents.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <tales of wisdom gained...>
 pull before push
+Poker has over 2 million unique winning card combinations
+Don't talk to strangers at the library and DO NOT shake their hand if they offer theirs just to be polite because they might grab it and not let go
+Planning before doing is CRUTIAL
 
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -54,55 +59,72 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
+==============================================================
+
+2018-01-14:
+--------------------------------------------------------------
+Puneet :: reformatted and finally updated devlog, continued working on getComboVal so that it is able to detect Royal Flush, Straight Flush, Flush, Straight, and Four of a Kind
+==============================================================
+
 2018-01-13:
-james: blackjack, blackjack opponent, bug fixing and commenting
-
+--------------------------------------------------------------
+James :: blackjack, blackjack opponent, bug fixing and commenting
+Puneet :: attempted to make a HashMap to hardcode all possible winning hands but then realized how hard that was, so got started on getComboVal, win, and draw methods, made a new friend at the library
+Kathleen :: made a new friend at the library
 ==============================================================
-2018-01-12:
 
+2018-01-11:
+--------------------------------------------------------------
+Puneet :: changed deck in CardGames.java to an ArrayList to make more prewritten methods available for us to use, updated methods in CardGames.java to make them usable with an ArrayList, wrote set up methods for Texas Hold Em
 ==============================================================
+
 2018-01-10
-James: moved things around in Casino and Blackjaack and started TexasHoldEm
+--------------------------------------------------------------
+James :: moved things around in Casino and Blackjaack and started TexasHoldEm
+Puneet :: created project
 ==============================================================
+
 2018-01-09
 --------------------------------------------------------------
-Kathleen:: first version of crazyeights working in casino class
-James:: created todo.txt
-Puneet:: updated UML
+Kathleen :: first version of crazyeights working in casino class
+James :: created todo.txt
+Puneet :: updated UML
 ==============================================================
 
 2018-01-08
 --------------------------------------------------------------
-Kathleen::updated README file
-Puneet:: added BankAccount class
+Kathleen :: updated README file
+Puneet :: added BankAccount class
 ==============================================================
 
 2018-1-7:
 -------------------------------------------------------------
-James: first version of blackjack, casino class working.
+James :: first version of blackjack, casino class working.
 ==============================================================
 
 2018-1-6:
 --------------------------------------------------------------
-James: added class files! started main class!
+James :: added class files! started main class!
 ==============================================================
+
 2018-1-4:
 --------------------------------------------------------------
-James, Kathleen:: made flow chart, edited proposal
-Puneet:: UML diagram
+James, Kathleen :: made flow chart, edited proposal
+Puneet :: UML diagram
 =============================================================
 
 2018-1-3:
 --------------------------------------------------------------
-James:: added to devlog, added plan
-Kathleen:: added .gitignore,devlog.txt
+James :: added to devlog, added plan
+Kathleen :: added .gitignore, devlog.txt
 =============================================================
 
 2018-1-2:
 --------------------------------------------------------------
-James, Puneet, Kathleen:: added proposal.pdf to git repo!
+James, Puneet, Kathleen :: added proposal.pdf to git repo!
 =============================================================
 
 2018-1-1:
-James, Puneet, Kathleen:: finalized project idea(card game)
+--------------------------------------------------------------
+James, Puneet, Kathleen :: finalized project idea(card game)
 =============================================================
