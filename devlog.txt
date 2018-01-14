@@ -16,10 +16,8 @@ OBSTACLES OVERCOME
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
->
+instantiating the same instance of something in a different class
+we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,11 +25,14 @@ COOL STUFF LEARNED
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2018-1-13: The opponent interface will be added in at a later date
 2018-1-4: We changed the nature of the opponent class to be a separate "player" class that would fall under the interface Opponent.java. EXAMPLE: The class for Poker (the game)and the computer opponent for that game will be in separate classes. This will be the easiest way to implement opponents.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <tales of wisdom gained...>
+pull before push
+
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -53,6 +54,12 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
+2018-01-13:
+james: blackjack, blackjack opponent, bug fixing and commenting
+
+==============================================================
+2018-01-12:
+
 ==============================================================
 2018-01-10
 James: moved things around in Casino and Blackjaack and started TexasHoldEm
