@@ -4,7 +4,7 @@ public abstract  class CardGame {
     //instance vars
     protected ArrayList<Card> deck = new ArrayList<Card>();//deck of cards
     public ArrayList<Card> hand = new ArrayList<Card>();//the cards the player has
-    public ArrayList<Card> stockpile = new Arraylist<Card>();//stockpile need for CrazyEight
+    //public ArrayList<Card> stockpile = new Arraylist<Card>();//stockpile need for CrazyEight
 
   //constructor
   public CardGame() {
@@ -24,7 +24,7 @@ public abstract  class CardGame {
     //public abstract int placeBet();(added with gambling)*/
 
 
-    public void shuffle(ArrayList arr) {
+    public void shuffle(ArrayList<Card> arr) {
       int randomIndex;
       for( int i = arr.size()-1; i > 0; i-- ) {
      	  //pick an index at random

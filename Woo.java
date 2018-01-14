@@ -35,7 +35,7 @@ public class Woo {
 	int gambleamt=bob.gamble();
         bob.deal();
 	bob.play();
-	if (bob.win()) {
+	if (bob.win) {
 	    System.out.println("you won!");
 	    myAccount.deposit(gambleamt);
 	}
@@ -57,7 +57,7 @@ public class Woo {
     }
 
     public void playCrazyEights() {
-      boolean won = false;
+	/* boolean won = false;
       String winner;
       CrazyEight pjelly= new CrazyEight ();
       CrazyEightOpponent opp1 = new CrazyEightOpponent(opp1);
@@ -90,7 +90,7 @@ public class Woo {
 
     }
       System.out.println(winner + "won!");
-
+	*/
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();
