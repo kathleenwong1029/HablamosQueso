@@ -57,40 +57,45 @@ public class Woo {
     }
 
     public void playCrazyEights() {
-	/* boolean won = false;
-      String winner;
-      CrazyEight pjelly= new CrazyEight ();
-      CrazyEightOpponent opp1 = new CrazyEightOpponent(opp1);
-      CrazyEightOpponent opp2 = new CrazyEightOpponent(opp2);
-      CrazyEightOpponent opp3 = new CrazyEightOpponent(opp3);
-      pjelly.deal();
+	    boolean won = false;
+      String winner="";
+      int time = 0;
+      CrazyEight pjelly= new CrazyEight();
+      CrazyEightOpponent opp1 = new CrazyEightOpponent("opp1");
+      CrazyEightOpponent opp2 = new CrazyEightOpponent("opp2");
+      CrazyEightOpponent opp3 = new CrazyEightOpponent("opp3");
       System.out.println(pjelly.getInstructions());
       while(won== false){
-      Card stockpile=
-      opp1.turn(stockpile);
+      if(time>0){
+        pjelly.setTopCard(opp3);
+      }
+      pjelly.win(pjelly.getTopCard());
+        if (pjelly.winner ==true){
+          winner="pjelly";
+          break;
+        }
+      opp1.setTopCard(pjelly);
+      opp1.turn(opp1.topCard);
       if (opp1.winner ==true){
         winner=opp1.name;
         break;
       }
-      // opp2.turn(stockpile);
-      // if (opp2.winner ==true){
-      //   winner=opp2.name;
-      //   break;
-      // }
-      // opp3.turn(stockpile);
-      // if (opp3.winner ==true){
-      //   winner=opp3.name;
-      //   break;
-      // }
-      pjelly.win(stockpile);
-      if (pjelly.winner ==true){
-        winner=pjelly;
+      opp2.setTopCard2(opp1);
+      opp2.turn(opp2.topCard);
+      if (opp2.winner ==true){
+        winner=opp2.name;
         break;
       }
-
+      opp3.setTopCard2(opp2);
+      opp3.turn(opp3.topCard);
+      time+=1;
+      if (opp3.winner ==true){
+        winner=opp3.name;
+        break;
+      }
     }
       System.out.println(winner + "won!");
-	*/
+
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();

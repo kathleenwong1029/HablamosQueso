@@ -3,55 +3,52 @@ import java.util.ArrayList;
 
 public class CrazyEight extends CardGame{
   private int deckLength;
-  private boolean isValidMove = false;
-  private boolean winner =false;
+  public boolean winner =false;
   private boolean drawAgain;
-  private int cardNum=5;
+  public Card topCard;
+
+
   //constructor
   public CrazyEight(){
     super();
     shuffle(deck);
+    deal();
+    topCard = deck.get(0);
+    deck.remove(0);
   }
 
   //deals five cards
   public void deal(){
-     hand.add(deck.get(0));
-	   hand.add(deck.get(1));
-     hand.add(deck.get(2));
-	   hand.add(deck.get(3));
-     hand.add(deck.get(4));
+     drawCard();
+     drawCard();
+     drawCard();
+     drawCard();
+     drawCard();
      deckLength = 5;
   }
 
   //draw
   public void drawCard(){
-    hand.add(deck.get(cardNum));
-    cardNum++;
+    hand.add(deck.get(0));
+    deck.remove(0);
     deckLength++;
+  }
+
+  public Card getTopCard(){
+    return topCard;
+  }
+  public void setTopCard(CrazyEightOpponent main){
+    topCard = main.getTopCard();
   }
 
   public boolean win(){
     return (deckLength==0);
   }
 
-  public String win(Card other){
-    // int a = deckLength-1;
-    // //if player has no usable cards, they are forced to draw
-    // while(isValidMove==false){
-    // while(a>0){
-    //   if(hand.get(a).value==8||hand.get(a).value==other.value||hand.get(a).symbol==other.symbol){
-    //     isValidMove=true;
-    //     break;
-    //   }
-    //   if (a==0){
-    //     drawCard();
-    //     cardNum+=1;
-    //     deckLength++;
-    //     System.out.println("Here's your new deck:");
-    //   }
-    //   a--;
-    // }}
+  public void win(Card other){
 
+    System.out.println("The topCard is " + topCard);
+    outer:
     while(winner == false){
       System.out.println(printArray(hand));
       while(!(drawAgain==true)) {
@@ -59,7 +56,6 @@ public class CrazyEight extends CardGame{
       String draw =Keyboard.readString();
       if(draw.equals("yes")){
         drawCard();
-        cardNum+=1;
         deckLength++;
       }
       System.out.println(printArray(hand));
@@ -73,19 +69,20 @@ public class CrazyEight extends CardGame{
       int user;
       user=Keyboard.readInt();
       if(hand.get(user).value==other.value || hand.get(user).symbol==other.symbol){
+        topCard = hand.get(user);
+        deck.add(hand.get(user));
         hand.remove(user);
         deckLength-=1;
         if(win()==true){
           winner=true;
-          break;
         }
-        System.out.println(printArray(hand));
+        break outer;
       }
       else{
         System.out.println("Sorry, not a valid move. Try again!");
+        System.out.println(printArray(hand));
       }
     }
-    return "Congratulations! You're winner!";
   }
 
   //instructions
