@@ -34,12 +34,42 @@ public abstract  class CardGame {
     }
 
 
-  public String printArray(ArrayList arr) {
+  public String printArray(ArrayList<Card> arr) {
 	String retu="";
+  String a="";
+  String b="";
+  String c="";
+  String d="";
 	for(int i=0;i<arr.size();i++) {
-	    retu+=arr.get(i)+"\n";
+    //suit symbols
+    String sign="";
+    if(arr.get(i).symbol=="clubs"){
+      sign="\u2663";
+    }
+    if(arr.get(i).symbol=="hearts"){
+      sign="\u2665";
+    }
+    if(arr.get(i).symbol=="diamonds"){
+      sign="\u2666";
+    }
+    if(arr.get(i).symbol=="spades"){
+      sign="\u2660";
+    }
+      //more spaces if double digit value
+      if(arr.get(i).value>9){
+      a+="-------";
+      b+="|"+arr.get(i).value+" "+arr.get(i).value+ "|";
+      c+="|  "+sign+ "  |";
+      d+="   " +i+"   "; }
+      else{
+      a+="------";
+      b+="|"+arr.get(i).value+"  "+arr.get(i).value+ "|";
+      c+="|  "+sign+ " |";
+      d+="   " +i+"  ";}
 	}
-	return retu;
+  retu+=a+"\n"+b+"\n"+c+"\n"+b+"\n"+a+"\n"+d;
+  return retu;
+
     }
 
 }

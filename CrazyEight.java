@@ -8,7 +8,7 @@ public class CrazyEight extends CardGame{
   public boolean winner =false;
   private boolean drawAgain;
   public Card topCard;
-  public String suit="";
+  private boolean cardPlayed =false;
 
   //constructor
   public CrazyEight(){
@@ -46,25 +46,22 @@ public class CrazyEight extends CardGame{
     topCard = main.getTopCard();
   }
 
-  public String getSuit(){
-    return suit;
-  }
-
-  public void setSuit(CrazyEightOpponent main){
-    suit = main.getSuit();
-  }
-
   //player wins when they use all their cards
   public boolean win(){
     return (deckLength==0);
   }
 
   public void win(Card other){
-    System.out.println("The topCard is " + topCard);
+    //player wins if out of cards
+    if(win()){
+      return;
+    }
+    System.out.println("The topCard is: " + getTopCard() +"\n");
     outer:
     while(winner == false){
+      System.out.println("Here is your hand: " );
       System.out.println(printArray(hand));
-      while(!(drawAgain==true)) {
+      while(!(drawAgain)) {
       //ask player if they need to draw
       System.out.println("Do you need to draw?(Type yes or no)");
       String draw =Keyboard.readString();
@@ -74,63 +71,63 @@ public class CrazyEight extends CardGame{
       }
       System.out.println(printArray(hand));
       if(draw.equals("no")){
-        drawAgain=true;
+        break ;
       }
     }
-    drawAgain=false;
       //allows player to choose which card to play
-      System.out.println("Which card would you like to discard?(enter 1 for 1st card, 2 for 2nd card etc.)");
+      System.out.println("Which card would you like to discard?(Enter number under card)");
       int user;
       user=Keyboard.readInt();
-      //if an eight was played, user must play a card of declared suit of another eight
-      if(!(suit=="")){
-        if(hand.get(user).value==8||hand.get(user).symbol==suit){
-        topCard=hand.get(user);}
+
+      //card can be played if it matches the number of the topCard's number or if it is an eight
+      if(!(other.value==8) && hand.get(user).value==other.value){
+        cardPlayed=true;
+      }
+      //an eight can always be played
+      if(hand.get(user).value==8){
+          cardPlayed=true;
+      }
+        //card can be played if it matches the symbol of the topCard's symbol
+      if(hand.get(user).symbol==other.symbol){
+          cardPlayed=true;
+        }
+        if(cardPlayed){
+          topCard=hand.get(user);
+          //if the card played is an eight, user can declare a suit for the next player
+          if(topCard.value==8){
+              System.out.println("Which suit would you like to declare?");
+              String suitAnswer=Keyboard.readString();
+              if(suitAnswer=="diamond"||suitAnswer=="diamonds"){
+                topCard.symbol="diamonds";
+              }
+              if(suitAnswer=="club"||suitAnswer=="clubs"){
+                topCard.symbol="clubs";
+              }
+              if(suitAnswer=="heart"||suitAnswer=="hearts"){
+                topCard.symbol="hearts";
+              }
+              if(suitAnswer=="spade"||suitAnswer=="spades"){
+                topCard.symbol="spades";
+              }
+              System.out.println("The suit has been set to: " + topCard.symbol +" ");
+            }
+            //after card is played, it is removed from the player's hand and added to the end of the deck
+            deck.add(hand.get(user));
+            hand.remove(user);
+            deckLength-=1;
+            return;
+        }
         else{
           //gives error message if invalid card is attempted
           System.out.println("Sorry, not a valid move. Try again!");
-          System.out.println(printArray(hand));
-          break outer;
         }
-      }
-      //if a regular card was played, user can play an eight or any card of the same value of suit
-      else{
-        if(hand.get(user).value==8||hand.get(user).value==other.value || hand.get(user).symbol==other.symbol){
-        topCard = hand.get(user);}
-        else{
-          //gives error message if invalid card is attempted
-          System.out.println("Sorry, not a valid move. Try again!");
-          System.out.println(printArray(hand));
-          break outer;
-        }
-      }
-      //if the card played is an eight, user can declare a suit for the next player
-      if(topCard.value==8){
-          System.out.println("Which suit would you like to declare?");
-          String suitAnswer=Keyboard.readString();
-          if(suitAnswer=="diamond"||suitAnswer=="diamonds"){
-            suit="diamonds";
-          }
-          if(suitAnswer=="club"||suitAnswer=="clubs"){
-            suit="clubs";
-          }
-          if(suitAnswer=="heart"||suitAnswer=="hearts"){
-            suit="hearts";
-          }
-          if(suitAnswer=="spade"||suitAnswer=="spades"){
-            suit="spades";
-          }
-          System.out.println("The suit has been set to: " + suit);
-        }
-        //after card is played, it is removed from the player's hand and added to the end of the deck
-        deck.add(hand.get(user));
-        hand.remove(user);
-        deckLength-=1;
+
         //checks if player has won the game
         if(win()==true){
           winner=true;
+          return;
         }
-        break outer;
+
     }
   }
 

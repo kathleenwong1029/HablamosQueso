@@ -6,10 +6,8 @@ public class Woo {
     //constructor
     public Woo() {
 	myAccount=new BankAccount();
-
-
-
     }
+
     public Woo(int game, int difficulty, int balance, int numOfOpponents) {
 
 
@@ -64,33 +62,34 @@ public class Woo {
       CrazyEightOpponent opp3 = new CrazyEightOpponent("opp3");
       //print initial instructions
       System.out.println(pjelly.getInstructions());
+      //plays game
       while(won== false){
+      //for the first turn, the suit and topCard will be null;
       if(time>0){
         pjelly.setTopCard(opp3);
-        pjelly.setSuit(opp3);
       }
       pjelly.win(pjelly.getTopCard());
         if (pjelly.winner ==true){
           winner="You";
           won=true;
         }
-      opp1.setSuit(pjelly);
-      opp1.setTopCard(pjelly);
-      opp1.turn(opp1.topCard);
+
+      opp1.setTopCard2(pjelly);
+      opp1.turn(opp1.getTopCard());
       if (opp1.winner ==true){
         winner=opp1.name;
         won=true;
       }
-      opp2.setSuit2(opp1);
-      opp2.setTopCard2(opp1);
+
+      opp2.setTopCard(opp1);
       opp2.turn(opp2.getTopCard());
       if (opp2.winner ==true){
         winner=opp2.name;
         won=true;
       }
-      opp3.setSuit2(opp2);
-      opp3.setTopCard2(opp2);
-      opp3.turn(opp3.topCard);
+
+      opp3.setTopCard(opp2);
+      opp3.turn(opp3.getTopCard());
       time+=1;
       if (opp3.winner ==true){
         winner=opp3.name;
