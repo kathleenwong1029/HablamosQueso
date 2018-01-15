@@ -8,17 +8,17 @@ public class CrazyEightOpponent extends CrazyEight{
   public boolean winner =false;
   public Card topCard;
   int a;
+  public String suit="";
 
-
+  //constuctor
   public CrazyEightOpponent(){
-    deal();
   }
 
+  //overloaded constructor
   public CrazyEightOpponent(String heyhey){
     this();
     name=heyhey;
   }
-
   public Card getTopCard(){
     return topCard;
   }
@@ -30,20 +30,45 @@ public class CrazyEightOpponent extends CrazyEight{
     topCard = main.getTopCard();
   }
 
+  public String getSuit(){
+    return suit;
+  }
+
+  public void setSuit(CrazyEight main){
+    suit = main.getSuit();
+  }
+
+  public void setSuit2(CrazyEightOpponent main){
+    suit = main.getSuit();
+  }
+
   public void turn(Card other){
     System.out.println("The topCard is " + topCard);
+    //testing purposes
+    System.out.println("player" + name + "has" +printArray(hand) + "\n");
+
     a = deckLength-1;
     //if player has no usable cards, they are forced to draw
-    outer:
     while(isValidMove){
+    outer:
     while(a>-1){
+      //if the last card played was an eight, opponent requires a card of the declared suit
+      //or an eight
+      if(!(suit=="")){
+        if(hand.get(a).symbol==suit||hand.get(a).value==8){
+          isValidMove=true;
+          break outer;
+        }
+      }
+      //if the last card played was not a suit, an eight or card of similar suit of number can be played
+      else{
       if(hand.get(a).value==8||hand.get(a).value==other.value||hand.get(a).symbol==other.symbol){
         isValidMove=true;
         break outer;
       }
-      else{
-        a--;
-      }
+    }
+      a--;
+      //opponent has to keep drawing cards until one is playable
       if (a==0){
         drawCard();
         deckLength++;
@@ -53,17 +78,46 @@ public class CrazyEightOpponent extends CrazyEight{
     }
   }
 
+    inner:
+    //iterate through hand for playable card
     for(int i=0;i<hand.size()-1;i++){
-      if ((hand.get(i).value==other.value) || (hand.get(i).symbol==other.symbol)){
-        topCard= hand.get(i);
+      if(!(suit=="")){
+        if((hand.get(i).value==8)||(hand.get(i).symbol==suit)){
+          topCard= hand.get(i);
+        }
+        }
+      else{
+      if ((hand.get(i).value==8)||(hand.get(i).value==other.value)||(hand.get(i).symbol==other.symbol)) {
+        topCard= hand.get(i);}
+      }
         deck.add(hand.get(i));
-        System.out.println("Player" + name + "played"+hand.get(i) );
+        System.out.println("Player " + name + " played"+ hand.get(i));
+
+        //if computer opponent plays an 8, a random suit is chosen
+        if(hand.get(i).value==8){
+          double whichSuit=Math.random();
+          if(whichSuit<.25){
+            System.out.println("The suit is set to diamonds.");
+            suit="clubs";
+          }
+          if(whichSuit>.25 && whichSuit<.50){
+            System.out.println("The suit is set to clubs.");
+            suit="diamonds";
+          }
+          if(whichSuit>.50 && whichSuit<.75){
+            System.out.println("The suit is set to hearts.");
+            suit="hearts";
+          }
+          if(whichSuit>.75 && whichSuit<1.00){
+            System.out.println("The suit is set to spades.");
+            suit="spades";
+          }
+        }
         hand.remove(i);
         deckLength--;
-        break;
+        break inner;
       }
-    }
-    deckLength--;
+
     if(deckLength==0){
       winner=true;
     }

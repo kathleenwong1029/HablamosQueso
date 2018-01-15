@@ -60,38 +60,46 @@ public class Woo {
 	    boolean won = false;
       String winner="";
       int time = 0;
+
+      //instantiaing user
       CrazyEight pjelly= new CrazyEight();
+      //instantiaing three computer opponents
       CrazyEightOpponent opp1 = new CrazyEightOpponent("opp1");
       CrazyEightOpponent opp2 = new CrazyEightOpponent("opp2");
       CrazyEightOpponent opp3 = new CrazyEightOpponent("opp3");
+      //print initial instructions
       System.out.println(pjelly.getInstructions());
       while(won== false){
       if(time>0){
         pjelly.setTopCard(opp3);
+        pjelly.setSuit(opp3);
       }
       pjelly.win(pjelly.getTopCard());
         if (pjelly.winner ==true){
-          winner="pjelly";
-          break;
+          winner="You";
+          won=true;
         }
+      opp1.setSuit(pjelly);
       opp1.setTopCard(pjelly);
       opp1.turn(opp1.topCard);
       if (opp1.winner ==true){
         winner=opp1.name;
-        break;
+        won=true;
       }
+      opp2.setSuit2(opp1);
       opp2.setTopCard2(opp1);
-      opp2.turn(opp2.topCard);
+      opp2.turn(opp2.getTopCard());
       if (opp2.winner ==true){
         winner=opp2.name;
-        break;
+        won=true;
       }
+      opp3.setSuit2(opp2);
       opp3.setTopCard2(opp2);
       opp3.turn(opp3.topCard);
       time+=1;
       if (opp3.winner ==true){
         winner=opp3.name;
-        break;
+        won=true;
       }
     }
       System.out.println(winner + "won!");
