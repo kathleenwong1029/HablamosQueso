@@ -33,6 +33,12 @@ public class TexasHoldEm extends CardGame{
     deck.remove(0);
   }
 
+//resets pocket after a round
+  public void discardPocket(){
+    hand.remove(0);
+    hand.remove(0);
+  }
+
   public void setBoard(){
     //clear the board if not already
     if (board.size() > 0){
@@ -98,7 +104,7 @@ public class TexasHoldEm extends CardGame{
       freq.add(0);
     }
     for (Card c: combo){
-      freq.set(c.getValue(), freq.get(c.getValue)+1);
+      freq.set(c.getValue(), freq.get(c.getValue())+1);
     }
     int pairCntr = 0;
     int tripletCntr = 0;
@@ -117,13 +123,13 @@ public class TexasHoldEm extends CardGame{
     //Four of A Kind - 8 points
     if (quadCntr == 1) {return 8;}
     //Full House - 7 points
-    if (tripletCntr == 1 && pairCntr == 1) {return 7}
+    if (tripletCntr == 1 && pairCntr == 1) {return 7;}
     //Three of a Kind - 4 points
-    if (tripletCntr == 1) {return 4}
+    if (tripletCntr == 1) {return 4;}
     //Two Pair - 3 points
-    if (pairCntr == 2) {return 3}
+    if (pairCntr == 2) {return 3;}
     //Pair - 2 points
-    if (pairCntr == 1) {return 2}
+    if (pairCntr == 1) {return 2;}
 
     //Straight - 5 points
     //A is the highest card, 2 is the lowest card, no wrapping allowed
@@ -170,7 +176,7 @@ public class TexasHoldEm extends CardGame{
     String baseline = t;
     for (int i = 0; i < s.length(); i++){
       String c = s.substring(i,i+1); //current character
-      if (baseline.contains(c){
+      if (baseline.contains(c)){
         baseline = baseline.substring(0,baseline.indexOf(c)) + baseline.substring(baseline.indexOf(c)+1);
       }
       else {return false;}
@@ -178,6 +184,7 @@ public class TexasHoldEm extends CardGame{
     return true;
   }
 
+/*-----maybe it would be easier to place this in woo-----
   public boolean win(Object other){
     if (this.getComboVal() > other.getComboVal()){
       return true;
@@ -193,6 +200,7 @@ public class TexasHoldEm extends CardGame{
   }
 
 //should be giving this function the highest card in your hand in the case that no player has a playable hand
+
   public boolean highCard(Card c, Card other){
     if (c.getValue() > other.getValue()) {return true;}
     return false;
@@ -202,6 +210,7 @@ public class TexasHoldEm extends CardGame{
     if (c.getValue() == other.getValue()) {return true;}
     return false;
   }
+*/
 
 //-------------------------test-------------------------
   public static void main(String[] args){
@@ -220,8 +229,13 @@ public class TexasHoldEm extends CardGame{
     System.out.println("Board: \n" + specialK.getBoard());
     System.out.println("~bets are placed~");
     System.out.println("Poor Kathleen lost her family fortune. On to the next round.");
+    specialK.discardPocket();
+    specialK.deal();
+    specialK.deal();
     specialK.setBoard();
+    System.out.println("Pocket: \n" + specialK.getHand());
     System.out.println("Board: \n" + specialK.getBoard());
+    System.out.println("Hand value: " + specialK.getComboVal());
   }
 
 }
