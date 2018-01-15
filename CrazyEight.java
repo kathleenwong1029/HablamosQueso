@@ -14,23 +14,23 @@ public class CrazyEight extends CardGame{
   public CrazyEight(){
     super();
     shuffle(deck);
-    deal();
+    deal(deck);
     //the top card is the next card in the stockpile after dealing
     topCard = deck.get(0);
     deck.remove(0);
   }
 
   //deals five cards
-  public void deal(){
-     drawCard();
-     drawCard();
-     drawCard();
-     drawCard();
-     drawCard();
+  public void deal(ArrayList<Card> deck){
+     drawCard(deck);
+     drawCard(deck);
+     drawCard(deck);
+     drawCard(deck);
+     drawCard(deck);
   }
 
   //draw
-  public void drawCard(){
+  public void drawCard(ArrayList<Card> deck){
     hand.add(deck.get(0));
     deck.remove(0);
   }
@@ -64,7 +64,7 @@ public class CrazyEight extends CardGame{
       System.out.println("Do you need to draw?(Type yes or no)");
       String draw =Keyboard.readString();
       if(draw.equals("yes")){
-        drawCard();
+        drawCard(deck);
       }
       System.out.println(printArray(hand));
       if(draw.equals("no")){

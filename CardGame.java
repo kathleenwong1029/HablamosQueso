@@ -19,10 +19,10 @@ public abstract  class CardGame {
     //methods
 
     public abstract String getInstructions();
-    public abstract void deal();
+    public abstract void deal(ArrayList<Card> deck);
     //public abstract int placeBet();(added with gambling)*/
 
-
+    //shuffles
     public void shuffle(ArrayList arr) {
       int randomIndex;
       for( int i = arr.size()-1; i > 0; i-- ) {
@@ -33,7 +33,7 @@ public abstract  class CardGame {
       }
     }
 
-
+    //prints out card
   public String printArray(ArrayList<Card> arr) {
 	String retu="";
   String a="";
@@ -82,7 +82,7 @@ public abstract  class CardGame {
       c+="|  "+sign+ " |";
       d+="   " +i+"  ";}
 	}
-  retu+=a+"\n"+b+"\n"+c+"\n"+b+"\n"+a+"\n"+d;
+  retu+=a+"\n"+b+"\n"+c+"\n"+b+"\n"+a+"\n"+d+"\n"+arr;
   return retu;
 
     }

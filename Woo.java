@@ -7,11 +7,6 @@ public class Woo {
     public Woo() {
 	myAccount=new BankAccount();
     }
-
-    public Woo(int game, int difficulty, int balance, int numOfOpponents) {
-
-
-    }
     //methods
     public static int viewBal() {
 	return myAccount.getBal();
@@ -25,16 +20,17 @@ public class Woo {
 	    Blackjack bob=new Blackjack();
 	int u=1;
 	System.out.println(bob.getInstructions());
-	int gambleamt;
-        bob.deal();
+        bob.deal(bob.deck);
 	bob.play();
 	if (bob.win) {
 	    System.out.println("you won!");
-	    myAccount.deposit(bob.y);
+	    myAccount.deposit(bob.bet);
+	    bob.bet=0;
 	}
 	else {
 	    System.out.println("you lost!");
 	    myAccount.withdraw(bob.y);
+	    bob.bet=0;
 	}
 
 
@@ -75,21 +71,21 @@ public class Woo {
         }
 
       opp1.setTopCard2(pjelly);
-      opp1.turn(opp1.getTopCard());
+      pjelly.deck=opp1.turn(opp1.getTopCard(),pjelly.deck);
       if (opp1.win()){
         winner=opp1.name;
         break;
       }
 
       opp2.setTopCard(opp1);
-      opp2.turn(opp2.getTopCard());
+      pjelly.deck=opp2.turn(opp2.getTopCard(),pjelly.deck);
       if (opp2.win()){
         winner=opp2.name;
         break;
       }
 
       opp3.setTopCard(opp2);
-      opp3.turn(opp3.getTopCard());
+      pjelly.deck=opp3.turn(opp3.getTopCard(),pjelly.deck);
       time+=1;
       if (opp3.win()){
         winner=opp3.name;

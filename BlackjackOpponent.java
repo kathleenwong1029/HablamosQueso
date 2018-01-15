@@ -5,16 +5,15 @@ public class BlackjackOpponent extends Blackjack {
     public boolean win=true;
     public String name;
     public BlackjackOpponent(String n) {
-	super();
-	deal();
-	bet+=(int) (Math.random()*500);
+	//deal();
+	//bet+=(int) (Math.random()*500);
 	name=n;
+	
 	
     }
     public BlackjackOpponent(int i) {
-	super();
-	deal();
-        System.out.println("dealer card:"+hand.get(0));
+	//deal();
+        //System.out.println("dealer card:"+hand.get(0));
 	bet+=(int) (Math.random()*1000);
 	name="dealer";
 	
@@ -39,23 +38,24 @@ public class BlackjackOpponent extends Blackjack {
 	    }
 	}
 	//diag
-	//System.out.println("prog run fin");
+	
 	return sum;
 	
     }
-    public void AI() {
-	//System.out.println("opponent hand:"+hand);
+    public void AI(ArrayList<Card> deck) {
+	if (name.equals("dealer")) {
+	    System.out.println("dealer card:"+hand.get(0));
+	}
+        
 	while (sum()<16 ) {
 	    if (deckLength>4) {
 		break;
 	    }
-	    addtohand();
+	    addtohand(deck);
 	    System.out.println("opponent added card");
 	    }
 	if (sum()>21)
 	    win=false;
-	    //System.out.println("opponent hand:"+hand);
-	//System.out.println("sum of opponent card:"+sum());
     }
     public String toString() {
 	return name+"'s  hand:"+hand+"\n sum of cards:"+sum();

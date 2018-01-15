@@ -4,21 +4,23 @@ public class Blackjack extends CardGame {
     public boolean win=true;
     public static int bet;
     protected int deckLength=0;//length of the players deck
-    public static int y;
+    public int y;
     //note to self: add instance vars that track value of computer opponent bank account?
     public Blackjack() {
 	super();//inherits default constructor
 	hand=new ArrayList<Card>();//this is the player's array
+	
     }
-    public  void deal() {
+    public  void deal(ArrayList<Card> deck) {
 	shuffle(deck);//shuffles the deck
-	//System.out.println(deck);
+
         hand.add(deck.remove(0));//adds the Card to hand, removes it from deck
 	
-	hand.add(deck.remove(0));//does it again because you need 
+	hand.add(deck.remove(0));//does it again because you need
+	System.out.println(hand);
 	deckLength=2;//deck length is 2 cards
     }
-    public void addtohand() {//adds card to your hand, if you want to
+    public void addtohand(ArrayList<Card> deck) {//adds card to your hand, if you want to. This takes in deck, to keep the deck universal for when there are opponents.
 	if (deckLength>4) {
 	    //you can't have more than 5 cards
 	}
@@ -82,9 +84,12 @@ public class Blackjack extends CardGame {
 	BlackjackOpponent tophie=new BlackjackOpponent(1);//dealer
 	BlackjackOpponent pj=new BlackjackOpponent("BlackjackMeister6969");
 	BlackjackOpponent kdove=new BlackjackOpponent("joe");
-	tophie.AI();
-	pj.AI();
-	kdove.AI();
+	tophie.deal(deck);
+	pj.deal(deck);
+	kdove.deal(deck);
+	tophie.AI(deck);
+	pj.AI(deck);
+	kdove.AI(deck);
 	gamble();
 	 System.out.println("These are your cards: \n"+printArray(hand));
 	    while(u==1) {
@@ -94,7 +99,7 @@ public class Blackjack extends CardGame {
 
 	    u=Keyboard.readInt();
 	    if(u==1) {
-		addtohand();
+		addtohand(deck);
 		 System.out.println("These are your cards\n"+printArray(hand));
 		 
 
@@ -106,7 +111,7 @@ public class Blackjack extends CardGame {
 	    System.out.println("These are your cards\n"+printArray(hand));
 	    
 	    int total=sum();
-	    
+	    //lists sum and opponent hands
 	    System.out.println("This is the sum\n"+total);
 	    System.out.println("Opponent Hands:");
 	    System.out.println(tophie.toString());

@@ -22,7 +22,7 @@ public class CrazyEightOpponent extends CrazyEight{
   }
 
   //opponent's turn
-  public void turn(Card other){
+    public ArrayList<Card> turn(Card other, ArrayList<Card> deck){
     //variables
     boolean isValidMove=false ;
     boolean cardPlayed =false;
@@ -81,8 +81,9 @@ public class CrazyEightOpponent extends CrazyEight{
    }
    //if deck did not have playable card, keep drawing
    if(!(isValidMove)){
-     drawCard();
+     drawCard(deck);
   }
 }//end while loop
+    return deck;
 }//end turn method
 }//end CrazyEightOpponent
