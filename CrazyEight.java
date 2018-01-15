@@ -65,8 +65,12 @@ public class CrazyEight extends CardGame{
     while(winner == false){
       System.out.println(printArray(hand));
       while(!(drawAgain==true)) {
+<<<<<<< HEAD
       //ask player if they need to draw
       System.out.println("Do you need to draw?(Type yes or no)");
+=======
+      System.out.println("Do you need to draw?(type in yes or no)");
+>>>>>>> 3ee09e62bf1334203d3f4081328ea2261d4bea0c
       String draw =Keyboard.readString();
       if(draw.equals("yes")){
         drawCard();
@@ -79,7 +83,7 @@ public class CrazyEight extends CardGame{
     }
     drawAgain=false;
       //allows player to choose which card to play
-      System.out.println("Which card would you like to discard?");
+      System.out.println("Which card would you like to discard?(enter 1 for 1st card, 2 for 2nd card etc.)");
       int user;
       user=Keyboard.readInt();
       //if an eight was played, user must play a card of declared suit of another eight

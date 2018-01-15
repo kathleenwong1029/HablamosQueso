@@ -2,7 +2,9 @@ import cs1.Keyboard;
 import java.util.ArrayList;
 public class Blackjack extends CardGame {
     public boolean win=true;
+    public static int bet;
     protected int deckLength=0;//length of the players deck
+    public static int y;
     //note to self: add instance vars that track value of computer opponent bank account?
     public Blackjack() {
 	super();//inherits default constructor
@@ -10,7 +12,7 @@ public class Blackjack extends CardGame {
     }
     public  void deal() {
 	shuffle(deck);//shuffles the deck
-	System.out.println(deck);
+	//System.out.println(deck);
         hand.add(deck.remove(0));//adds the Card to hand, removes it from deck
 	
 	hand.add(deck.remove(0));//does it again because you need 
@@ -57,30 +59,33 @@ public class Blackjack extends CardGame {
     }
 
     public int gamble() {
-	int bet=0;//gamble default:0
+        System.out.println("current betting pot size:"+bet);
 	System.out.println("enter amount to gamble(must be less than value of bank account:");
 	int u;
 	u=Keyboard.readInt();
 	if (u>Woo.viewBal()) {
 	    System.out.println("you can't gamble that much! The dealer interprets this as all in!");
-	    bet=Woo.viewBal();//puts in bet(entire value of bank account)
+	    u=Woo.viewBal();
+	    bet+=u;//puts in bet(entire value of bank account)
 	    
 	    
 	}
 	else {
-	    bet=u;//puts in bet
+	    bet+=u;//puts in bet
 	}
-	return bet;
+	y=u;
+	return u;
     }
 	    
     public  void play() {
 	int u=1;
 	BlackjackOpponent tophie=new BlackjackOpponent(1);//dealer
-	BlackjackOpponent pj=new BlackjackOpponent();
-	BlackjackOpponent kdove=new BlackjackOpponent();
+	BlackjackOpponent pj=new BlackjackOpponent("BlackjackMeister6969");
+	BlackjackOpponent kdove=new BlackjackOpponent("joe");
 	tophie.AI();
 	pj.AI();
 	kdove.AI();
+	gamble();
 	 System.out.println("These are your cards: \n"+printArray(hand));
 	    while(u==1) {
 	        
@@ -103,18 +108,27 @@ public class Blackjack extends CardGame {
 	    int total=sum();
 	    
 	    System.out.println("This is the sum\n"+total);
+	    System.out.println("Opponent Hands:");
+	    System.out.println(tophie.toString());
+	     System.out.println(pj.toString());
+	      System.out.println(kdove.toString());
+	    
 	    if(total==21) {
 		System.out.println("blackjack");
 	    }
-	    if(tophie.sum()>sum()) {
+	    if(total>21) {
 		win=false;
 	    }
-	    if(pj.sum()>sum()) {
+	    if(tophie.sum()>total && tophie.win) {
 		win=false;
 	    }
-	    if(kdove.sum()>sum()) {
+	    if(pj.sum()>total && pj.win) {
 		win=false;
 	    }
+	    if(kdove.sum()>total && kdove.win ) {
+		win=false;
+	    }
+	    
 	    
     }
     public String getInstructions() {
