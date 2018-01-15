@@ -66,8 +66,12 @@ yyyy-mm-dd
 
 2018-01-15
 --------------------------------------------------------------
+<<<<<<< HEAD
 Puneet :: TexasHoldEm now able to recognize all playable poker hands
 Kathleen:: fixed remaining bugs and added gambling aspects
+=======
+Puneet :: TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, fixed printArray in CardGame so it displays J, Q, K, and A instead of 11, 12, 13, and 1
+>>>>>>> 683380802886c9b8a4d206e73d96a68dcb61c21f
 ==============================================================
 
 2018-01-14:
