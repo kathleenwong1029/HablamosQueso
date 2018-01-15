@@ -67,13 +67,12 @@ public class TexasHoldEm extends CardGame{
   }*/
 
 //the hard part
-  public int getComboVal(Card x, Card y, Card z){
+  public int getComboVal(Card v, Card w, Card x, Card y, Card z){
     ArrayList<Card> combo = new ArrayList<Card>();
     String values = "";
     String suits = "";
-    for (Card c: hand){
-      combo.add(c);
-    }
+    combo.add(v);
+    combo.add(w);
     combo.add(x);
     combo.add(y);
     combo.add(z);
@@ -184,33 +183,54 @@ public class TexasHoldEm extends CardGame{
     return true;
   }
 
-/*-----maybe it would be easier to place this in woo-----
-  public boolean win(Object other){
-    if (this.getComboVal() > other.getComboVal()){
-      return true;
+//returns the hand name
+  public String getComboName(Card a, Card b, Card c, Card d, Card e){
+    int comboVal = getComboVal(a,b,c,d,e);
+    if (comboVal == 10) {return "Royal Flush";}
+    if (comboVal == 9) {return "Straigh Flush";}
+    if (comboVal == 8) {return "Four of a Kind";}
+    if (comboVal == 7) {return "Full House";}
+    if (comboVal == 6) {return "Flush";}
+    if (comboVal == 5) {return "Straight";}
+    if (comboVal == 4) {return "Three of a Kind";}
+    if (comboVal == 3) {return "Two Pairs";}
+    if (comboVal == 2) {return "Pair";}
+    return "Not a playable hand";
+  }
+
+//Determines best possible hand for player and CPU opponent
+  public String bestPossibleHand(){
+    ArrayList<Card> bestHand = new ArrayList<Card>();
+    int bestHandVal = 0;
+    ArrayList<Card> combi = new ArrayList<Card>();
+    for (Card c : board){
+      combi.add(c);
     }
-    return false;
-  }
-
-  public boolean draw(Object other){
-    if (this.getComboVal() == other.getComboVal()){
-      return true;
+    for (Card c : hand){
+      combi.add(c);
     }
-    return false;
+    for (int a = 0; a < combi.size()-4; a++){
+      for (int b = a+1; b < combi.size()-3; b++){
+        for (int c = b+1; c < combi.size()-2; c++){
+          for (int d = c+1; d < combi.size()-1; d++){
+            for (int e = d+1; e < combi.size(); e++){
+              int currentHandVal = getComboVal(combi.get(a), combi.get(b), combi.get(c), combi.get(d), combi.get(e));
+              if (currentHandVal > bestHandVal){
+                bestHandVal = currentHandVal;
+                bestHand.clear();
+                bestHand.add(combi.get(a));
+                bestHand.add(combi.get(b));
+                bestHand.add(combi.get(c));
+                bestHand.add(combi.get(d));
+                bestHand.add(combi.get(e));
+              }
+            }
+          }
+        }
+      }
+    }
+    return printArray(bestHand) + "\n" + getComboName(bestHand.get(0), bestHand.get(1), bestHand.get(2), bestHand.get(3), bestHand.get(4));
   }
-
-//should be giving this function the highest card in your hand in the case that no player has a playable hand
-
-  public boolean highCard(Card c, Card other){
-    if (c.getValue() > other.getValue()) {return true;}
-    return false;
-  }
-
-  public boolean draw(Card c, Card other){
-    if (c.getValue() == other.getValue()) {return true;}
-    return false;
-  }
-*/
 
 //----setHand method for testing getComboVal method-----
   public void setHand(Card a, Card b){
@@ -237,14 +257,13 @@ public class TexasHoldEm extends CardGame{
     specialK.deal();
     System.out.println("Pocket: \n" + specialK.getHand());
     specialK.setBoard();
-    System.out.println("Board: \n" + specialK.getBoard());
     System.out.println("~bets are placed~");
     specialK.addToBoard();
-    System.out.println("Board: \n" + specialK.getBoard());
     System.out.println("~bets are placed~");
     specialK.addToBoard();
-    System.out.println("Board: \n" + specialK.getBoard());
     System.out.println("~bets are placed~");
+    System.out.println("Board: \n" + specialK.getBoard());
+    System.out.println("Best possible hand: \n" + specialK.bestPossibleHand());
     System.out.println("Poor Kathleen lost her family fortune. On to the next round.");
 
     Card a = new Card(10,3);
@@ -256,7 +275,7 @@ public class TexasHoldEm extends CardGame{
     System.out.println("Pocket: \n" + specialK.getHand());
     specialK.manualSetBoard(a,b,c);
     System.out.println("Board: \n" + specialK.getBoard());
-    System.out.println("Hand value: " + specialK.getComboVal(a,b,c));
+    System.out.println("Hand value: " + specialK.getComboVal(a,b,c,d,e));
   }
 
 }
