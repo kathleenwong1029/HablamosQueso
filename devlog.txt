@@ -63,6 +63,11 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 ==============================================================
 
+2018-01-15
+--------------------------------------------------------------
+Puneet :: TexasHoldEm now able to recognize all playable poker hands
+==============================================================
+
 2018-01-14:
 --------------------------------------------------------------
 Puneet :: reformatted and finally updated devlog, continued working on getComboVal so that it is able to detect Royal Flush, Straight Flush, Flush, Straight, and Four of a Kind

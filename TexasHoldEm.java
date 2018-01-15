@@ -62,30 +62,26 @@ public class TexasHoldEm extends CardGame{
 
 //the hard part
   public int getComboVal(){
-    ArrayList<Card> combi = new ArrayList<Card>();
-    String combo = "";
+    ArrayList<Card> combo = new ArrayList<Card>();
     String values = "";
     String suits = "";
     for (Card c: board){
-      combi.add(c);
+      combo.add(c);
     }
     for (Card c: hand){
-      combi.add(c);
+      combo.add(c);
     }
-    for (Card c: combi){
-      combo += c.getValue(); //values are stored in even indicies
-      combo += c.getSymbol(); //symbols are stored in odd indicies
-    }
-    for (Card c: combi){
+    for (Card c: combo){
       values += c.getValue();
     }
-    for (Card c: combi){
+    for (Card c: combo){
       suits += c.getSymbol();
     }
+
     //tests for flush combos (require same suit)
     if (isConsistantString(suits)){
       //Royal Flush - 10 points
-      if (sameChars(values, "1011121314")){
+      if (sameChars(values, "101112131")){
         return 10;
       }
       //Straight Flush - 9 points
@@ -95,105 +91,47 @@ public class TexasHoldEm extends CardGame{
       //Flush - 6 points
       else{return 6;}
     }
-    //tests for x of a kind
-    //Four of A Kind - 8 points
-    if (
-    (sameChars("1111", values) && values.length() <= 6) ||
-    (sameChars("2222", values) && values.length() <= 6) ||
-    (sameChars("3333", values) && values.length() <= 6) ||
-    (sameChars("4444", values) && values.length() <= 6) ||
-    sameChars("5555", values) ||
-    sameChars("6666", values) ||
-    sameChars("7777", values) ||
-    sameChars("8888", values) ||
-    sameChars("9999", values) ||
-    sameChars("10101010", values) ||
-    sameChars("11111111", values) ||
-    sameChars("12121212", values) ||
-    sameChars("13131313", values) ||
-    sameChars("14141414", values)
-    )
-    {return 8;}
-/* THIS IS TOO HARD -- TOO MANY EXCEPTIONS USING THIS METHOD
-    //Three of A Kind - 4 points
-    if (values.length() <= 7){
-      for (int c = 0; c < 10; c++){ //single digit value triplets
-        String repeated = String.valueOf(c) + String.valueOf(c) + String.valueOf(c);
-        //exception: hand = "11, 1, x, x, x"
-        if (sameChars(repeated, values)){ //if values contains the triplet
-          String temp = "";
-          int rmCounter = 3;
-          for (int i = 0; i < values.length(); i++){
-            if (values.substring(i,i+1).equals(String.valueOf(c))){
-              rmCounter--;
-            }
-            else {
-              temp += values.substring(i,i+1);
-            } //all values except for repeated are added to temp
-            if (rmCounter == 0){
-              if (i != values.length()-1){
-                temp += values.substring(i+1);
-              }
-              break;
-            } //if triplet removed, add the rest of the values string to temp and break
-          }
-          //Full House - 7 points
-          if (temp.length() == 2 && isConsistantString(temp)){
-            return 7;
-          } //if temp only has two values and they are a pair, then Full House
-          if (temp.length() == 4){
-            int c1Counter = 0;
-            int c2Counter = 0;
-            String c2 = "";
-            for (int i = 1; i < 4; i++){
-              if (temp.substring(i,i+1).equals(temp.substring(0,1))) {
-                c1Counter++;
-              } //if current char is equal to first, c1Counter++
-              if (temp.substring(i,i+1).equals(c2)){
-                c2Counter++;
-              } //if current char is equal to c2, c2Counter++
-              else{
-                c2 = temp.substring(i,i+1);
-                c2Counter = 0;
-              } //else set c2 to current char and reset c2Counter
-            }
-            if (c1Counter == c2Counter || c1Counter == 3){
-              return 7;
-            } //if 1 match with c1 and 1 match with c2 (two pairs), or the other 3 chars match with the first (two pairs of 11), then Full House
-          }
-          return 4; //return 4 if not a Full House, but Three of a Kind
-        }
-      }
-    }
-    else {
-      for (int c = 10; c < 15; c++) { //for triplets of double digit values
-        String repeated = String.valueOf(c) + String.valueOf(c) + String.valueOf(c);
-        int rmCounter = 3;
-        for (int i = 0; i < values.length(); i++){
-          if (values.indexOf(String.valueOf(c)) != -1){
-              rmCounter--;
-            }
-            else {
-              temp += values.substring(i,i+1);
-            } //all values except for repeated are added to temp
-            if (rmCounter == 0){
-              if (i != values.length()-1){
-                temp += values.substring(i+1);
-              }
-              break;
-            } //if triplet removed, add the rest of the values string to temp and break
-        }
-      }
-    }
-*/
 
-    //Two Pair - 3 points --> nested if?
+    //tests for x of a kind
+    ArrayList<Integer> freq = new ArrayList<Integer>();
+    for (int i = 0; i < 14; i++){
+      freq.add(0);
+    }
+    for (Card c: combo){
+      freq.set(c.getValue(), freq.get(c.getValue)+1);
+    }
+    int pairCntr = 0;
+    int tripletCntr = 0;
+    int quadCntr = 0;
+    for (int i = 0; i < freq.size(); i++){
+      if (freq.get(i) == 2){ //Integer will automatically be unboxed to an int
+        pairCntr += 1;
+      }
+      if (freq.get(i) == 3){
+        tripletCntr += 1;
+      }
+      if (freq.get(i) == 4){
+        quadCntr += 1;
+      }
+    }
+    //Four of A Kind - 8 points
+    if (quadCntr == 1) {return 8;}
+    //Full House - 7 points
+    if (tripletCntr == 1 && pairCntr == 1) {return 7}
+    //Three of a Kind - 4 points
+    if (tripletCntr == 1) {return 4}
+    //Two Pair - 3 points
+    if (pairCntr == 2) {return 3}
     //Pair - 2 points
+    if (pairCntr == 1) {return 2}
+
     //Straight - 5 points
-    if (isConsecutiveString(values) || sameChars(values,"678910") || sameChars(values,"7891011") || sameChars(values,"89101112") || sameChars(values,"910111213")){
+    //A is the highest card, 2 is the lowest card, no wrapping allowed
+    if (isConsecutiveString(values) || sameChars(values,"678910") || sameChars(values,"7891011") || sameChars(values,"89101112") || sameChars(values,"910111213") || sameChars(values, "101112131")){
       return 5;
     }
     //if no combo achieved by any player (everyone has 1 point, then win is asserted off of who has the highest value card)
+    return 1;
   }
 
 //helper methods for said hard part
@@ -226,7 +164,9 @@ public class TexasHoldEm extends CardGame{
   }
 
   //tests to see if t contains the letters in s
+  //only works for Strings of the same length
   public boolean sameChars(String s, String t){
+    if (s.length() != t.length()) {return false;}
     String baseline = t;
     for (int i = 0; i < s.length(); i++){
       String c = s.substring(i,i+1); //current character
@@ -238,19 +178,29 @@ public class TexasHoldEm extends CardGame{
     return true;
   }
 
-
   public boolean win(Object other){
     if (this.getComboVal() > other.getComboVal()){
       return true;
     }
-    else{ return false; }
+    return false;
   }
 
   public boolean draw(Object other){
     if (this.getComboVal() == other.getComboVal()){
       return true;
     }
-    else { return false; }
+    return false;
+  }
+
+//should be giving this function the highest card in your hand in the case that no player has a playable hand
+  public boolean highCard(Card c, Card other){
+    if (c.getValue() > other.getValue()) {return true;}
+    return false;
+  }
+
+  public boolean draw(Card c, Card other){
+    if (c.getValue() == other.getValue()) {return true;}
+    return false;
   }
 
 //-------------------------test-------------------------
