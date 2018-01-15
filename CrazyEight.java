@@ -5,9 +5,9 @@ public class CrazyEight extends CardGame{
 
   //variables
   private int deckLength;
-  public boolean winner =false;
   private boolean drawAgain;
   public Card topCard;
+  private boolean winner=false;
   private boolean cardPlayed =false;
 
   //constructor
@@ -27,14 +27,12 @@ public class CrazyEight extends CardGame{
      drawCard();
      drawCard();
      drawCard();
-     deckLength = 5;
   }
 
   //draw
   public void drawCard(){
     hand.add(deck.get(0));
     deck.remove(0);
-    deckLength++;
   }
 
   //accessors
@@ -48,14 +46,14 @@ public class CrazyEight extends CardGame{
 
   //player wins when they use all their cards
   public boolean win(){
-    return (deckLength==0);
+    return (hand.size()==0);
+  }
+  public int lose(){
+    return hand.size();
   }
 
   public void win(Card other){
-    //player wins if out of cards
-    if(win()){
-      return;
-    }
+
     System.out.println("The topCard is: " + getTopCard() +"\n");
     outer:
     while(winner == false){
@@ -67,7 +65,6 @@ public class CrazyEight extends CardGame{
       String draw =Keyboard.readString();
       if(draw.equals("yes")){
         drawCard();
-        deckLength++;
       }
       System.out.println(printArray(hand));
       if(draw.equals("no")){
@@ -114,7 +111,6 @@ public class CrazyEight extends CardGame{
             //after card is played, it is removed from the player's hand and added to the end of the deck
             deck.add(hand.get(user));
             hand.remove(user);
-            deckLength-=1;
             return;
         }
         else{
@@ -140,6 +136,4 @@ public class CrazyEight extends CardGame{
     s+=" If no card is available, draw from the stockpile.";
     return s;
   }
-
-
 }

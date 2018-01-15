@@ -4,7 +4,6 @@ public class CrazyEightOpponent extends CrazyEight{
 
   private int deckLength;
   public String name;
-  public boolean winner =false;
   public Card topCard;
 
   //overloaded constructor
@@ -31,14 +30,11 @@ public class CrazyEightOpponent extends CrazyEight{
     //testing purposes
     System.out.println("player" + name + "has"+ "\n" +printArray(hand) );
     //if hand is empty, opponent wins
-    if(hand.size()==0){
-      winner=true;
-      return;
-    }
+
     while(!(isValidMove)){
     //iterate through hand for playable card
     int i=0;
-    while(i<deckLength){
+    while(i<hand.size()){
       //card can be played if it matches the number of the topCard's number or if it is an eight
       if((!(other.value==8)) && hand.get(i).value==other.value){
         cardPlayed=true;
@@ -60,11 +56,11 @@ public class CrazyEightOpponent extends CrazyEight{
         if(hand.get(i).value==8){
           double whichSuit=Math.random();
           if(whichSuit<.25){
-            System.out.println("The suit is set to diamonds.");
+            System.out.println("The suit is set to clubs.");
             topCard.symbol="clubs";
           }
           if(whichSuit>.25 && whichSuit<.50){
-            System.out.println("The suit is set to clubs.");
+            System.out.println("The suit is set to diamonds.");
             topCard.symbol="diamonds";
           }
           if(whichSuit>.50 && whichSuit<.75){
@@ -77,7 +73,6 @@ public class CrazyEightOpponent extends CrazyEight{
           }
         }
         hand.remove(i);
-        deckLength--;
         break ;
       }
      if(!(cardPlayed)){
@@ -87,8 +82,7 @@ public class CrazyEightOpponent extends CrazyEight{
    //if deck did not have playable card, keep drawing
    if(!(isValidMove)){
      drawCard();
-     deckLength+=1;
-   }
   }
-}
-}
+}//end while loop
+}//end turn method
+}//end CrazyEightOpponent

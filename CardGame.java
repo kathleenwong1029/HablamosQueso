@@ -55,15 +55,30 @@ public abstract  class CardGame {
     if(arr.get(i).symbol=="spades"){
       sign="\u2660";
     }
+    //royals
+    String value;
+    value= String.valueOf(arr.get(i).value);
+    if(arr.get(i).value==1){
+      value="A";
+    }
+    if(arr.get(i).value==11){
+      value="J";
+    }
+    if(arr.get(i).value==12){
+    value="Q";
+    }
+    if(arr.get(i).value==13){
+      value="K";
+    }
       //more spaces if double digit value
-      if(arr.get(i).value>9){
+      if(arr.get(i).value==10){
       a+="-------";
-      b+="|"+arr.get(i).value+" "+arr.get(i).value+ "|";
+      b+="|"+value+" "+value+ "|";
       c+="|  "+sign+ "  |";
       d+="   " +i+"   "; }
       else{
       a+="------";
-      b+="|"+arr.get(i).value+"  "+arr.get(i).value+ "|";
+      b+="|"+value+"  "+value+ "|";
       c+="|  "+sign+ " |";
       d+="   " +i+"  ";}
 	}

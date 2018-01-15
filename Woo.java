@@ -69,35 +69,45 @@ public class Woo {
         pjelly.setTopCard(opp3);
       }
       pjelly.win(pjelly.getTopCard());
-        if (pjelly.winner ==true){
+        if (pjelly.win()){
           winner="You";
-          won=true;
+          break;
         }
 
       opp1.setTopCard2(pjelly);
       opp1.turn(opp1.getTopCard());
-      if (opp1.winner ==true){
+      if (opp1.win()){
         winner=opp1.name;
-        won=true;
+        break;
       }
 
       opp2.setTopCard(opp1);
       opp2.turn(opp2.getTopCard());
-      if (opp2.winner ==true){
+      if (opp2.win()){
         winner=opp2.name;
-        won=true;
+        break;
       }
 
       opp3.setTopCard(opp2);
       opp3.turn(opp3.getTopCard());
       time+=1;
-      if (opp3.winner ==true){
+      if (opp3.win()){
         winner=opp3.name;
-        won=true;
+        break;
       }
     }
       System.out.println(winner + "won!");
-
+      //if player lost, they lose ten dollars for every card they still have
+      if(!(winner=="You")){
+        int moneyLost=10*pjelly.lose();
+        myAccount.withdraw(moneyLost);
+        System.out.println("Sorry.You lost "+moneyLost+" dollars.");
+      }
+      //if player wins, they earn one hundred dollars
+      else{
+          myAccount.deposit(100);
+          System.out.println("You won 100 dollars!!!");
+      }
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();

@@ -28,6 +28,7 @@ COOL STUFF LEARNED
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 2018-1-13: The opponent interface will be added in at a later date, Texas Hold Em will not use a HashMap
+2018-1-11: changed array back to arraylist because we realized add/remove methods were very useful with cards
 2018-1-4: We changed the nature of the opponent class to be a separate "player" class that would fall under the interface Opponent.java. EXAMPLE: The class for Poker (the game)and the computer opponent for that game will be in separate classes. This will be the easiest way to implement opponents.
 
 LESSONS LEARNED
@@ -36,7 +37,7 @@ LESSONS LEARNED
 pull before push
 Poker has over 2 million unique winning card combinations
 Don't talk to strangers at the library and DO NOT shake their hand if they offer theirs just to be polite because they might grab it and not let go
-Planning before doing is CRUTIAL
+Planning before doing is CRUCIAL
 we need a good UML diagram in the beginning
 and a more unified approach
 
@@ -66,24 +67,27 @@ yyyy-mm-dd
 2018-01-15
 --------------------------------------------------------------
 Puneet :: TexasHoldEm now able to recognize all playable poker hands
+Kathleen:: fixed remaining bugs and added gambling aspects
 ==============================================================
 
 2018-01-14:
 --------------------------------------------------------------
 Puneet :: reformatted and finally updated devlog, continued working on getComboVal so that it is able to detect Royal Flush, Straight Flush, Flush, Straight, and Four of a Kind
 James :: everything in Blackjack is working, with the exception of gambling
+Kathleen:: added special eight feature to crazy eight and crazy eight opponent
 ==============================================================
 
 2018-01-13:
 --------------------------------------------------------------
 James :: blackjack, blackjack opponent, bug fixing and commenting
 Puneet :: attempted to make a HashMap to hardcode all possible winning hands but then realized how hard that was, so got started on getComboVal, win, and draw methods, made a new friend at the library
-Kathleen :: made a new friend at the library
+Kathleen :: started crazyeightopponent
 ==============================================================
 
 2018-01-11:
 --------------------------------------------------------------
 Puneet :: changed deck in CardGames.java to an ArrayList to make more prewritten methods available for us to use, updated methods in CardGames.java to make them usable with an ArrayList, wrote set up methods for Texas Hold Em
+Kathleen:: aligned CrazyEight and crazyEightOpponent to arraylist
 ==============================================================
 
 2018-01-10
