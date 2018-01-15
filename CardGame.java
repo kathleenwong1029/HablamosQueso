@@ -76,23 +76,11 @@ public abstract  class CardGame {
       b+="|"+value+" "+value+ "|";
       c+="|  "+sign+ "  |";
       d+="   " +i+"   "; }
-
       else{
-      String s = "";
-      if(arr.get(i).value==11){s="J";}
-      if(arr.get(i).value==12){s="Q";}
-      if(arr.get(i).value==13){s="K";}
-      if(arr.get(i).value==1){s="A";}
-      if(arr.get(i).value>1 && arr.get(i).value<10){s=String.valueOf(arr.get(i).value);}
       a+="------";
-<<<<<<< HEAD
       b+="|"+value+"  "+value+ "|";
-=======
-      b+="|"+s+"  "+s+ "|";
->>>>>>> 683380802886c9b8a4d206e73d96a68dcb61c21f
       c+="|  "+sign+ " |";
       d+="   " +i+"  ";}
-
 	}
   retu+=a+"\n"+b+"\n"+c+"\n"+b+"\n"+a+"\n"+d;
   return retu;
