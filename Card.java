@@ -1,8 +1,10 @@
 public class Card {
     public int value;
     public String symbol;
+    public String sVal;
     public Card(int v,int s ) {
 	value=v;
+  sVal=String.valueOf(s);
 	if(s==0) {
 	    symbol="clubs";
 	}
@@ -15,13 +17,16 @@ public class Card {
 	else{
 	    symbol="spades";
 	}
-	
+
     }
     public int getValue() {
 	return value;
     }
     public String getSymbol() {
 	return symbol;
+    }
+    public String getSVal() {
+      return sVal;
     }
     public String toString() {
 	if (value<11 && value>1) {

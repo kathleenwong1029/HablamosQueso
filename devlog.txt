@@ -65,7 +65,7 @@ yyyy-mm-dd
 
 2018-01-15
 --------------------------------------------------------------
-Puneet :: TexasHoldEm now able to recognize all playable poker hands
+Puneet :: TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, fixed printArray in CardGame so it displays J, Q, K, and A instead of 11, 12, 13, and 1
 ==============================================================
 
 2018-01-14:

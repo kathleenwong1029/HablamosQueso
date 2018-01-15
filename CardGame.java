@@ -56,16 +56,24 @@ public abstract  class CardGame {
       sign="\u2660";
     }
       //more spaces if double digit value
-      if(arr.get(i).value>9){
+      if(arr.get(i).value==10){
       a+="-------";
       b+="|"+arr.get(i).value+" "+arr.get(i).value+ "|";
       c+="|  "+sign+ "  |";
       d+="   " +i+"   "; }
+
       else{
+      String s = "";
+      if(arr.get(i).value==11){s="J";}
+      if(arr.get(i).value==12){s="Q";}
+      if(arr.get(i).value==13){s="K";}
+      if(arr.get(i).value==1){s="A";}
+      if(arr.get(i).value>1 && arr.get(i).value<10){s=String.valueOf(arr.get(i).value);}
       a+="------";
-      b+="|"+arr.get(i).value+"  "+arr.get(i).value+ "|";
+      b+="|"+s+"  "+s+ "|";
       c+="|  "+sign+ " |";
       d+="   " +i+"  ";}
+
 	}
   retu+=a+"\n"+b+"\n"+c+"\n"+b+"\n"+a+"\n"+d;
   return retu;

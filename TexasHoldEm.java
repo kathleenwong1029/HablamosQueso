@@ -67,21 +67,21 @@ public class TexasHoldEm extends CardGame{
   }*/
 
 //the hard part
-  public int getComboVal(){
+  public int getComboVal(Card x, Card y, Card z){
     ArrayList<Card> combo = new ArrayList<Card>();
     String values = "";
     String suits = "";
-    for (Card c: board){
-      combo.add(c);
-    }
     for (Card c: hand){
       combo.add(c);
     }
+    combo.add(x);
+    combo.add(y);
+    combo.add(z);
     for (Card c: combo){
       values += c.getValue();
     }
     for (Card c: combo){
-      suits += c.getSymbol();
+      suits += c.getSVal();
     }
 
     //tests for flush combos (require same suit)
@@ -145,7 +145,7 @@ public class TexasHoldEm extends CardGame{
   public boolean isConsistantString(String s){
     String lastChar = s.substring(0,1);
     for (int i = 1; i < s.length(); i++){
-      if (s.substring(i,i+1) != lastChar){
+      if (!(s.substring(i,i+1).equals(lastChar))){
         return false;
       }
       else {
@@ -212,6 +212,23 @@ public class TexasHoldEm extends CardGame{
   }
 */
 
+//----setHand method for testing getComboVal method-----
+  public void setHand(Card a, Card b){
+    discardPocket();
+    hand.add(a);
+    hand.add(b);
+  }
+
+//-manualSetBoard method for testing getComboVal method-
+  public void manualSetBoard(Card a, Card b, Card c){
+      for(int i = board.size(); i > 0 ; i--){
+        board.remove(0);
+      }
+      board.add(a);
+      board.add(b);
+      board.add(c);
+  }
+
 //-------------------------test-------------------------
   public static void main(String[] args){
     TexasHoldEm specialK = new TexasHoldEm();
@@ -229,13 +246,17 @@ public class TexasHoldEm extends CardGame{
     System.out.println("Board: \n" + specialK.getBoard());
     System.out.println("~bets are placed~");
     System.out.println("Poor Kathleen lost her family fortune. On to the next round.");
-    specialK.discardPocket();
-    specialK.deal();
-    specialK.deal();
-    specialK.setBoard();
+
+    Card a = new Card(10,3);
+    Card b = new Card(11,3);
+    Card c = new Card(12,3);
+    Card d = new Card(13,3);
+    Card e = new Card(1,3);
+    specialK.setHand(d,e);
     System.out.println("Pocket: \n" + specialK.getHand());
+    specialK.manualSetBoard(a,b,c);
     System.out.println("Board: \n" + specialK.getBoard());
-    System.out.println("Hand value: " + specialK.getComboVal());
+    System.out.println("Hand value: " + specialK.getComboVal(a,b,c));
   }
 
 }
