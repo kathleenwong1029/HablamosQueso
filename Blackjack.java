@@ -17,7 +17,7 @@ public class Blackjack extends CardGame {
         hand.add(deck.remove(0));//adds the Card to hand, removes it from deck
 	
 	hand.add(deck.remove(0));//does it again because you need
-	System.out.println(hand);
+	//System.out.println(hand);
 	deckLength=2;//deck length is 2 cards
     }
     public void addtohand(ArrayList<Card> deck) {//adds card to your hand, if you want to. This takes in deck, to keep the deck universal for when there are opponents.

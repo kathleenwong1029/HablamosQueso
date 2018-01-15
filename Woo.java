@@ -99,15 +99,15 @@ public class Woo {
         myAccount.withdraw(moneyLost);
         System.out.println("Sorry.You lost "+moneyLost+" dollars.");
       }
-      //if player wins, they earn one hundred dollars
+      //if player wins, they earn five hundred dollars
       else{
-          myAccount.deposit(100);
-          System.out.println("You won 100 dollars!!!");
+          myAccount.deposit(500);
+          System.out.println("You won 500 dollars!!!");
       }
     }
     public static void main(String[] args) {
 	Woo jane=new Woo();
-	System.out.println("Welcome to the casino!");
+	System.out.println("Welcome to the casino! Your balance is 500 dollars, happy spending");
 	boolean cplay=true;
 	while(cplay==true) {
 	System.out.println("choose your game/action");
@@ -120,23 +120,25 @@ public class Woo {
 	if (user==1) {
 	    jane.playBlackjack();
 	}
+	
   if( user==2){
     jane.playCrazyEights();
   }
+  String tier="";
   if (user==4) {
-    String tier="";
-    if(myAccount.getBal()<750){
+    
+    if(myAccount.getBal()<2000){
       tier="gold";
     }
-    if(myAccount.getBal()>=750&&myAccount.getBal()<=1500){
+    if(myAccount.getBal()>=2000&&myAccount.getBal()<=8000){
       tier="platinum";
     }
-    if(myAccount.getBal()>1500&&myAccount.getBal()<=2250){
+    if(myAccount.getBal()>8000&&myAccount.getBal()<=22500){
       tier="diamond";
     }
-    if(myAccount.getBal()>2250){
+    if(myAccount.getBal()>22500){
       tier="god";
-      System.out.println("You have reached the highest tier in this casino.Goodbye!")
+      System.out.println("You have reached the highest tier in this casino.Goodbye!");
       break;
     }
       System.out.println(myAccount);
