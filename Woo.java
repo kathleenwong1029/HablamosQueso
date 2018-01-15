@@ -21,8 +21,38 @@ public class Woo {
 	int u=1;
 	System.out.println(bob.getInstructions());
         bob.deal(bob.deck);
+	BlackjackOpponent tophie=new BlackjackOpponent(1);//dealer
+	BlackjackOpponent pj=new BlackjackOpponent("BlackjackMeister6969");
+	BlackjackOpponent kdove=new BlackjackOpponent("joe");
+	tophie.deal(bob.deck);
+	pj.deal(bob.deck);
+	kdove.deal(bob.deck);
+	tophie.AIDealer(bob.deck);
+	pj.AI(bob.deck, tophie.AIDealer(bob.deck));
+	kdove.AI(bob.deck,tophie.AIDealer(bob.deck));
 	bob.play();
-	if (bob.win) {
+	    System.out.println("Opponent Hands:");
+	    System.out.println(tophie.toString());
+	     System.out.println(pj.toString());
+	      System.out.println(kdove.toString());
+	      int total=bob.total;
+	      boolean win=true;
+	      if(total==21) {
+		System.out.println("blackjack");
+	    }
+	    if(total>21) {
+		win=false;
+	    }
+	    if(tophie.sum()>total && tophie.win) {
+		win=false;
+	    }
+	    if(pj.sum()>total && pj.win) {
+		win=false;
+	    }
+	    if(kdove.sum()>total && kdove.win ) {
+		win=false;
+	    }
+	      if (win) {
 	    System.out.println("you won!");
 	    myAccount.deposit(bob.bet);
 	    bob.bet=0;

@@ -1,10 +1,11 @@
 import cs1.Keyboard;
 import java.util.ArrayList;
 public class Blackjack extends CardGame {
-    public boolean win=true;
+    //public boolean win=true;
     public static int bet;
     protected int deckLength=0;//length of the players deck
     public int y;
+    public int total;
     //note to self: add instance vars that track value of computer opponent bank account?
     public Blackjack() {
 	super();//inherits default constructor
@@ -81,15 +82,6 @@ public class Blackjack extends CardGame {
 	    
     public  void play() {
 	int u=1;
-	BlackjackOpponent tophie=new BlackjackOpponent(1);//dealer
-	BlackjackOpponent pj=new BlackjackOpponent("BlackjackMeister6969");
-	BlackjackOpponent kdove=new BlackjackOpponent("joe");
-	tophie.deal(deck);
-	pj.deal(deck);
-	kdove.deal(deck);
-	tophie.AI(deck);
-	pj.AI(deck);
-	kdove.AI(deck);
 	gamble();
 	 System.out.println("These are your cards: \n"+printArray(hand));
 	    while(u==1) {
@@ -110,32 +102,11 @@ public class Blackjack extends CardGame {
 
 	    System.out.println("These are your cards\n"+printArray(hand));
 	    
-	    int total=sum();
+	    total=sum();
 	    //lists sum and opponent hands
 	    System.out.println("This is the sum\n"+total);
-	    System.out.println("Opponent Hands:");
-	    System.out.println(tophie.toString());
-	     System.out.println(pj.toString());
-	      System.out.println(kdove.toString());
-	    
-	    if(total==21) {
-		System.out.println("blackjack");
-	    }
-	    if(total>21) {
-		win=false;
-	    }
-	    if(tophie.sum()>total && tophie.win) {
-		win=false;
-	    }
-	    if(pj.sum()>total && pj.win) {
-		win=false;
-	    }
-	    if(kdove.sum()>total && kdove.win ) {
-		win=false;
-	    }
-	    
-	    
     }
+    
     public String getInstructions() {
 	return "The goal of the game is to get as close to 21 as possible(but never above it).You are dealt 2 cards at the beginning. YOu have the option of asking for up to 3 more cards to get up to your desired sum. Jacks, Queens, and Kings are all equal to 10. Aces can be equal to either 1 or 11. All other cards are equal to their respective values. This game has a designated DEALER(the opponent). A good tip is to look at the card that the dealer is showing to decide whether or not you will ask for another card from the deck!";
     }

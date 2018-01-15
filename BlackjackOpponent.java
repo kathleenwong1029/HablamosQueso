@@ -42,21 +42,40 @@ public class BlackjackOpponent extends Blackjack {
 	return sum;
 	
     }
-    public void AI(ArrayList<Card> deck) {
+    public void AI(ArrayList<Card> deck,Card headCard) {
 	if (name.equals("dealer")) {
 	    System.out.println("dealer card:"+hand.get(0));
 	}
+	
         
-	while (sum()<16 ) {
+	while (sum()<16 || ((headCard.value==10 || headCard.value==1) && sum()<17)) {
 	    if (deckLength>4) {
 		break;
 	    }
 	    addtohand(deck);
-	    System.out.println("opponent added card");
+	    System.out.println(name+" added card");
 	    }
 	if (sum()>21)
 	    win=false;
     }
+    public Card AIDealer(ArrayList<Card> deck) {
+	if (name.equals("dealer")) {
+	    System.out.println("dealer card:"+hand.get(0));
+	}
+	
+        
+	while (sum()<17) {
+	    if (deckLength>4) {
+		break;
+	    }
+	    addtohand(deck);
+	    System.out.println(name+" added card");
+	    }
+	if (sum()>21)
+	    win=false;
+	return hand.get(0);
+    }
+    
     public String toString() {
 	return name+"'s  hand:"+hand+"\n sum of cards:"+sum();
     }
