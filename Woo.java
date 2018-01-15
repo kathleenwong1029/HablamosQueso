@@ -22,26 +22,21 @@ public class Woo {
     public void playBlackjack() {
 	boolean bplay=true;
 
-	//future for computer opponent(3) of them
-	//BlackjackOpponent tophie=new BlackjackOpponent();
-	//BlackjackOpponent rob=new BlackjackOpponent();
-	//BlackjackOpponent winpls=new BlackjackOpponent;
-
 
 	while(bplay==true) {
 	    Blackjack bob=new Blackjack();
 	int u=1;
 	System.out.println(bob.getInstructions());
-	int gambleamt=bob.gamble();
+	int gambleamt;
         bob.deal();
 	bob.play();
 	if (bob.win) {
 	    System.out.println("you won!");
-	    myAccount.deposit(gambleamt);
+	    myAccount.deposit(bob.y);
 	}
 	else {
 	    System.out.println("you lost!");
-	    myAccount.withdraw(gambleamt);
+	    myAccount.withdraw(bob.y);
 	}
 
 

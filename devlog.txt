@@ -37,6 +37,8 @@ pull before push
 Poker has over 2 million unique winning card combinations
 Don't talk to strangers at the library and DO NOT shake their hand if they offer theirs just to be polite because they might grab it and not let go
 Planning before doing is CRUTIAL
+we need a good UML diagram in the beginning
+and a more unified approach
 
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -64,6 +66,7 @@ yyyy-mm-dd
 2018-01-14:
 --------------------------------------------------------------
 Puneet :: reformatted and finally updated devlog, continued working on getComboVal so that it is able to detect Royal Flush, Straight Flush, Flush, Straight, and Four of a Kind
+James :: everything in Blackjack is working, with the exception of gambling
 ==============================================================
 
 2018-01-13:

@@ -8,7 +8,7 @@ public abstract  class CardGame {
   //constructor
   public CardGame() {
 	//initialize deck
-	  for(int i=2;i<14;i++) {
+	  for(int i=1;i<14;i++) {
 	    for(int j=0;j<4;j++) {
 		    Card c = new Card(i,j);
         deck.add(c);

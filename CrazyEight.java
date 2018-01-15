@@ -52,7 +52,7 @@ public class CrazyEight extends CardGame{
     while(winner == false){
       System.out.println(printArray(hand));
       while(!(drawAgain==true)) {
-      System.out.println("Do you need to draw?");
+      System.out.println("Do you need to draw?(type in yes or no)");
       String draw =Keyboard.readString();
       if(draw.equals("yes")){
         drawCard();
@@ -65,7 +65,7 @@ public class CrazyEight extends CardGame{
     }
     drawAgain=false;
       //allows player to choose which card to play
-      System.out.println("Which card would you like to discard?");
+      System.out.println("Which card would you like to discard?(enter 1 for 1st card, 2 for 2nd card etc.)");
       int user;
       user=Keyboard.readInt();
       if(hand.get(user).value==other.value || hand.get(user).symbol==other.symbol){
