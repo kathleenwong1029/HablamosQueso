@@ -23,19 +23,18 @@ Need to update UML and flowchart
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<wow! oo! etc!...>
+Poker has over 2 million unique winning card combinations
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2018-1-13: The opponent class of crazy eight will be a subclass the crazy eight class because it will use many of the same methods already present in the crazy eight class
 2018-1-13: The opponent interface will be added in at a later date, Texas Hold Em will not use a HashMap
 2018-1-11: changed array back to arraylist because we realized add/remove methods were very useful with cards
 2018-1-4: We changed the nature of the opponent class to be a separate "player" class that would fall under the interface Opponent.java. EXAMPLE: The class for Poker (the game)and the computer opponent for that game will be in separate classes. This will be the easiest way to implement opponents.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<tales of wisdom gained...>
 pull before push
-Poker has over 2 million unique winning card combinations
 Don't talk to strangers at the library and DO NOT shake their hand if they offer theirs just to be polite because they might grab it and not let go
 Planning before doing is CRUCIAL
 we need a good UML diagram in the beginning
@@ -66,12 +65,8 @@ yyyy-mm-dd
 
 2018-01-15
 --------------------------------------------------------------
-<<<<<<< HEAD
 Puneet :: TexasHoldEm now able to recognize all playable poker hands
-Kathleen:: fixed remaining bugs and added gambling aspects
-=======
-Puneet :: TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, fixed printArray in CardGame so it displays J, Q, K, and A instead of 11, 12, 13, and 1
->>>>>>> 683380802886c9b8a4d206e73d96a68dcb61c21f
+Kathleen:: fixed remaining bugs and added gambling aspects to crazy eight and woo
 ==============================================================
 
 2018-01-14:

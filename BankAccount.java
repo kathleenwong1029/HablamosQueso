@@ -29,9 +29,9 @@ public class BankAccount{
     }
   }
     public String toString() {
-	return "your balance:"+getBal()+"\n";
+	return "Your balance is :"+getBal()+"\n";
     }
-   
+
 
 /*------------------------main method for testing------------------------
   public static void main (String[] args){

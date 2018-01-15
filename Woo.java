@@ -124,13 +124,31 @@ public class Woo {
     jane.playCrazyEights();
   }
   if (user==4) {
+    String tier="";
+    if(myAccount.getBal()<750){
+      tier="gold";
+    }
+    if(myAccount.getBal()>=750&&myAccount.getBal()<=1500){
+      tier="platinum";
+    }
+    if(myAccount.getBal()>1500&&myAccount.getBal()<=2250){
+      tier="diamond";
+    }
+    if(myAccount.getBal()>2250){
+      tier="god";
+      System.out.println("You have reached the highest tier in this casino.Goodbye!")
+      break;
+    }
       System.out.println(myAccount);
+      System.out.println("Your status is: "+ tier);
 	  }
 	System.out.println("1. continue playing \n 2. Exit casino");
 	int cas;
 	cas=Keyboard.readInt();
 	if(cas==2) {
 	    System.out.println("Thanks for playing! Here are your stats:");
+      System.out.println(myAccount);
+      System.out.println("Your status is: "+ tier);
 	    break;
 	}
 	}
