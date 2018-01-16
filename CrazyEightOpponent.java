@@ -26,10 +26,9 @@ public class CrazyEightOpponent extends CrazyEight{
     //variables
     boolean isValidMove=false ;
     boolean cardPlayed =false;
-    System.out.println("The topCard is: " + getTopCard());
     //testing purposes
-    System.out.println("player" + name + "has"+ "\n" +printArray(hand) );
-    //if hand is empty, opponent wins
+    //System.out.println("The topCard is: " + getTopCard());
+    //System.out.println("player" + name + "has"+ "\n" +printArray(hand) );
 
     while(!(isValidMove)){
     //iterate through hand for playable card
@@ -51,7 +50,7 @@ public class CrazyEightOpponent extends CrazyEight{
         isValidMove=true;
         topCard= hand.get(i);
         deck.add(hand.get(i));
-        System.out.println("Player " + name + " played"+ hand.get(i));
+        System.out.println("\nPlayer " + name + " played"+ hand.get(i));
         //if computer opponent plays an 8, a random suit is chosen
         if(hand.get(i).value==8){
           double whichSuit=Math.random();

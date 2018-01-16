@@ -125,7 +125,7 @@ public class Woo {
       System.out.println(winner + "won!");
       //if player lost, they lose ten dollars for every card they still have
       if(!(winner=="You")){
-        int moneyLost=10*pjelly.lose();
+        int moneyLost=20*pjelly.lose();
         myAccount.withdraw(moneyLost);
         System.out.println("Sorry.You lost "+moneyLost+" dollars.");
       }
@@ -150,13 +150,13 @@ public class Woo {
 	if (user==1) {
 	    jane.playBlackjack();
 	}
-	
+
   if( user==2){
     jane.playCrazyEights();
   }
   String tier="";
   if (user==4) {
-    
+
     if(myAccount.getBal()<2000){
       tier="gold";
     }

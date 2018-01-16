@@ -43,18 +43,19 @@ public class CrazyEight extends CardGame{
   public void setTopCard(CrazyEightOpponent main){
     topCard = main.getTopCard();
   }
+  public int lose(){
+    return hand.size();
+  }
 
   //player wins when they use all their cards
   public boolean win(){
     return (hand.size()==0);
   }
-  public int lose(){
-    return hand.size();
-  }
+
 
   public void win(Card other){
 
-    System.out.println("The topCard is: " + getTopCard() +"\n");
+    System.out.println("\nThe topCard is: " + getTopCard() +"\n");
     outer:
     while(winner == false){
       System.out.println("Here is your hand: " );
@@ -131,7 +132,7 @@ public class CrazyEight extends CardGame{
   public String getInstructions(){
     String s = "Welcome to the CrazyEights Table!";
     s+="\n The goal of the game is to use up all your cards.";
-    s+= "You can discard a card only if it matches the rank of suit of the card on the discard pile.";
+    s+= "You can discard a card only if it matches the rank or suit of the card on the discard pile.";
     s+="Playing an 8 allows you to declare any suit.";
     s+=" If no card is available, draw from the stockpile.";
     return s;
