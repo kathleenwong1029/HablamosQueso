@@ -4,11 +4,13 @@ public class BlackjackOpponent extends Blackjack {
     //first working edition
     public boolean win=true;
     public String name;
-    public ArrayList<Card> deck2;//if there is a split
+    public Card headCard;
+    public ArrayList<Card> deck2=new ArrayList<Card>();//if there is a split
     public BlackjackOpponent(String n) {
 	//deal();
-	//bet+=(int) (Math.random()*500);
+	bet+=(int) (Math.random()*500);
 	name=n;
+	
 	
 	
     }
@@ -43,28 +45,28 @@ public class BlackjackOpponent extends Blackjack {
 	return sum;
 	
     }
-    public int AI(ArrayList<Card> deck,Card headCard) {
-	Card hCard=headCard;
+    public int AI(ArrayList<Card> deck,ArrayList<Card> hand,Card hCard) {
+	headCard=hCard;
 	int sum2=0;
-	
-	if (name.equals("dealer")) {
-	    System.out.println("dealer card:"+hand.get(0));
+        
+	System.out.println(hand);
+        if (deckLength>1 && hand.get(0).value==hand.get(1).value && sum(deck)<17 && deckLength<3) {
+	    System.out.println(hand);
+	    deckLength-=1;
+	    deck2.add(hand.get(0));
+	    hand.remove(0);
+	    sum2=AI(deck, deck2, headCard );
 	}
-	
-        if (deckLength>1 && deck.get(0).value==deck.get(1).value && sum(deck)<17 && deckLength<3) {
-	    deck2.add(deck.get(1));
-	    deck.remove(0);
-	    sum2=AI(deck2, hCard);
-	}
-	while (sum(deck)<16 || ((headCard.value==10 || headCard.value==1) && sum(deck)<17)) {
+	while (sum(hand)<16 || ((headCard.value==10 || headCard.value==1) && sum(hand)<17)) {
 	    if (deckLength>4) {
 		break;
 	    }
+	    
 	    addtohand(deck);
 	    System.out.println(name+" added card");
 	    }
-	if((sum(deck)>sum2 && sum(deck)<22)|| sum2>21 ) {
-	    sum2=sum(deck);
+	if((sum(hand)>sum2 && sum(hand)<22)|| sum2>21 ) {
+	    sum2=sum(hand);
 	}
 	if (sum2>21)
 	    win=false;
@@ -74,6 +76,7 @@ public class BlackjackOpponent extends Blackjack {
     public Card AIDealer(ArrayList<Card> deck) {
 	if (name.equals("dealer")) {
 	    System.out.println("dealer card:"+hand.get(0));
+	    headCard=hand.get(0);
 	}
 	
         
@@ -90,6 +93,6 @@ public class BlackjackOpponent extends Blackjack {
     }
     
     public String toString() {
-	return name+"'s  hand:"+hand+"\n sum of cards:"+sum(deck);
+	return name+"'s  hand:"+hand+"\n sum of cards:"+sum(hand);
     }
 }
