@@ -29,7 +29,7 @@ splitting a hand doesn't quite work. The hand is split, but no comparison is mad
     //sums up cards in deck
     public int sum(ArrayList<Card> deck) {
 	int sum=0;//return value
-	for(int i=0; i<deckLength; i++) {//goes thru each card!
+	for(int i=0; i<hand.size(); i++) {//goes thru each card!
 	    if(hand.get(i).getValue()>10){//if the value of the card is greater than 10, than downcast it
 		sum+=10;
 	    }
@@ -62,16 +62,16 @@ postcond: outputs the sum of the hand, adds cards as needed to hand
 	headCard=hCard;
 	int sum2=0;
         
-	System.out.println(hand);
+	//System.out.println(hand);
         if (deckLength>1 && hand.get(0).value==hand.get(1).value && sum(deck)<17 && deckLength<3) {//if there is a pair, and splitting the deck up will lead to more benefit than harm, then it can be split up
 	    System.out.println(hand);
-	    deckLength-=1;
+	  
 	    deck2.add(hand.get(0));
 	    hand.remove(0);
 	    sum2=AI(deck, deck2, headCard );
 	}
 	while (sum(hand)<16 || ((headCard.value==10 || headCard.value==1) && sum(hand)<17)) {//if the dealer's card is a 10 or ace, we are more willing to take a risk with respect to adding cards to our deck
-	    if (deckLength>4) {
+	    if (hand.size()>4) {
 		break;//if there are too many cards, end the while loop
 	    }
 	    
@@ -80,6 +80,8 @@ postcond: outputs the sum of the hand, adds cards as needed to hand
 	    }
 	if((sum(hand)>sum2 && sum(hand)<22)|| sum2>21 ) {//in a situation where there are two decks(when there is a pair), this compares the two and outputs the higher one
 	    sum2=sum(hand);
+	    hand=deck2;
+	    //deckLength=hand.size();
 	}
 	if (sum2>21)//if the final sum is greater than 21
 	    win=false;// we cannot win
