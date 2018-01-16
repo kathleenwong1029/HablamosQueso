@@ -43,13 +43,13 @@ public class Woo {
 	    if(total>21) {
 		win=false;
 	    }
-	    if(tophie.sum()>total && tophie.win) {
+	    if(tophie.sum(tophie.hand)>total && tophie.win) {
 		win=false;
 	    }
-	    if(pj.sum()>total && pj.win) {
+	    if(pj.sum(pj.hand)>total && pj.win) {
 		win=false;
 	    }
-	    if(kdove.sum()>total && kdove.win ) {
+	    if(kdove.sum(kdove.hand)>total && kdove.win ) {
 		win=false;
 	    }
 	      if (win) {

@@ -6,6 +6,7 @@ public class Blackjack extends CardGame {
     protected int deckLength=0;//length of the players deck
     public int y;
     public int total;
+    public int total2;
     //note to self: add instance vars that track value of computer opponent bank account?
     public Blackjack() {
 	super();//inherits default constructor
@@ -33,7 +34,7 @@ public class Blackjack extends CardGame {
 	    deckLength+=1;//deck is now one card longer
 	}
     }
-    public int sum() {//sums up value of cards
+    public int sum(ArrayList<Card> hand) {//sums up value of cards
 	int sum=0;//return value
 	for(int i=0; i<deckLength; i++) {//goes thru each card!
 	    if(hand.get(i).getValue()>10){//if the value of the card is greater than 10, than downcast it
@@ -81,10 +82,37 @@ public class Blackjack extends CardGame {
     }
 	    
     public  void play() {
+	
 	int u=1;
 	gamble();
-	 System.out.println("These are your cards: \n"+printArray(hand));
-	    while(u==1) {
+	System.out.println("These are your cards: \n"+printArray(hand));
+	while(u==1) {
+	    if (hand.get(0).value==hand.get(1).value) {
+		System.out.println("want to split your cards?(this doubles your bet, and you will basically have two chances to get as close to 21 as possible!) 1 for yes, 2 for no");
+		u=Keyboard.readInt();
+		if (u==1) {
+		    u+=y;
+		    ArrayList<Card> hand2=new ArrayList<Card>();
+			 
+		    hand2.add(hand.get(0));
+		    hand.remove(0);
+			 
+		    while(u==1) {
+			System.out.println("One of your hands "+hand+"\n THe other hand "+hand2);
+			System.out.println("Add cards to one of your hands? 1 for yes, 2 for no");
+			u=Keyboard.readInt();
+			if (u==2) {
+			    break;
+			}
+			hand2.add(deck.get(0));
+			    
+		    }
+		    total2=sum(hand2);
+		}
+		    
+		    
+		    
+	    }
 	        
 	    System.out.println("Ask dealer for other card?");
 	    System.out.println("1 for yes, 2 for no");
@@ -92,19 +120,22 @@ public class Blackjack extends CardGame {
 	    u=Keyboard.readInt();
 	    if(u==1) {
 		addtohand(deck);
-		 System.out.println("These are your cards\n"+printArray(hand));
+		System.out.println("These are your cards\n"+printArray(hand));
 		 
 
 	    }
 	   
-	    }
+	}
 	    
 
-	    System.out.println("These are your cards\n"+printArray(hand));
+	System.out.println("These are your cards\n"+printArray(hand));
 	    
-	    total=sum();
-	    //lists sum and opponent hands
-	    System.out.println("This is the sum\n"+total);
+	total=sum(hand);
+	if (total2> total && total2<22) {
+	    total=total2;
+	}
+	//lists sum and opponent hands
+	System.out.println("This is the sum\n"+total);
     }
     
     public String getInstructions() {

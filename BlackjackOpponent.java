@@ -4,6 +4,7 @@ public class BlackjackOpponent extends Blackjack {
     //first working edition
     public boolean win=true;
     public String name;
+    public ArrayList<Card> deck2;//if there is a split
     public BlackjackOpponent(String n) {
 	//deal();
 	//bet+=(int) (Math.random()*500);
@@ -18,7 +19,7 @@ public class BlackjackOpponent extends Blackjack {
 	name="dealer";
 	
     }
-    public int sum() {
+    public int sum(ArrayList<Card> deck) {
 	int sum=0;//return value
 	for(int i=0; i<deckLength; i++) {//goes thru each card!
 	    if(hand.get(i).getValue()>10){//if the value of the card is greater than 10, than downcast it
@@ -42,21 +43,33 @@ public class BlackjackOpponent extends Blackjack {
 	return sum;
 	
     }
-    public void AI(ArrayList<Card> deck,Card headCard) {
+    public int AI(ArrayList<Card> deck,Card headCard) {
+	Card hCard=headCard;
+	int sum2=0;
+	
 	if (name.equals("dealer")) {
 	    System.out.println("dealer card:"+hand.get(0));
 	}
 	
-        
-	while (sum()<16 || ((headCard.value==10 || headCard.value==1) && sum()<17)) {
+        if (deckLength>1 && deck.get(0).value==deck.get(1).value && sum(deck)<17 && deckLength<3) {
+	    deck2.add(deck.get(1));
+	    deck.remove(0);
+	    sum2=AI(deck2, hCard);
+	}
+	while (sum(deck)<16 || ((headCard.value==10 || headCard.value==1) && sum(deck)<17)) {
 	    if (deckLength>4) {
 		break;
 	    }
 	    addtohand(deck);
 	    System.out.println(name+" added card");
 	    }
-	if (sum()>21)
+	if((sum(deck)>sum2 && sum(deck)<22)|| sum2>21 ) {
+	    sum2=sum(deck);
+	}
+	if (sum2>21)
 	    win=false;
+	
+    return sum2;
     }
     public Card AIDealer(ArrayList<Card> deck) {
 	if (name.equals("dealer")) {
@@ -64,19 +77,19 @@ public class BlackjackOpponent extends Blackjack {
 	}
 	
         
-	while (sum()<17) {
+	while (sum(deck)<17) {
 	    if (deckLength>4) {
 		break;
 	    }
 	    addtohand(deck);
 	    System.out.println(name+" added card");
 	    }
-	if (sum()>21)
+	if (sum(deck)>21)
 	    win=false;
 	return hand.get(0);
     }
     
     public String toString() {
-	return name+"'s  hand:"+hand+"\n sum of cards:"+sum();
+	return name+"'s  hand:"+hand+"\n sum of cards:"+sum(deck);
     }
 }
