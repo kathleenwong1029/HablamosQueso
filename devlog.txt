@@ -13,7 +13,7 @@ A House of Cards
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 instantiating the same instance of something in a different class
-we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet
+we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet(how we did it: we made the deck a parameter in our computer opponent classes, and thus when we instantiated an instance or an action of this class from the main class, or the card game class, the deck could be carried over to the subclass.)
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,9 +23,11 @@ Need to update UML and flowchart
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Poker has over 2 million unique winning card combinations
+-those instance vars can get very annoying, as they carry over but without the data.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2018-1-15: All Opponent classes will extend their respective cardGame super classes, as they use many of the same methods. There will be n o opponent interface, as every opponent is inherently very different.
 2018-1-13: The opponent class of crazy eight will be a subclass the crazy eight class because it will use many of the same methods already present in the crazy eight class
 2018-1-13: The opponent interface will be added in at a later date, Texas Hold Em will not use a HashMap
 2018-1-11: changed array back to arraylist because we realized add/remove methods were very useful with cards
