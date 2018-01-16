@@ -28,8 +28,9 @@ public class Woo {
 	pj.deal(bob.deck);
 	kdove.deal(bob.deck);
 	tophie.AIDealer(bob.deck);
-	pj.AI(bob.deck, tophie.AIDealer(bob.deck));
-	kdove.AI(bob.deck,tophie.AIDealer(bob.deck));
+	Card h=tophie.hand.get(0);
+	pj.AI(bob.deck,pj.hand,h);
+	kdove.AI(bob.deck,pj.hand,h);
 	bob.play();
 	    System.out.println("Opponent Hands:");
 	    System.out.println(tophie.toString());
