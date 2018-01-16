@@ -95,7 +95,7 @@ public class Woo {
       if(time>0){
         pjelly.setTopCard(opp3);
       }
-      pjelly.win(pjelly.getTopCard());
+      pjelly.play(pjelly.getTopCard());
         if (pjelly.win()){
           winner="You";
           break;

@@ -66,7 +66,7 @@ yyyy-mm-dd
 2018-01-15
 --------------------------------------------------------------
 Puneet ::  TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, added methods to get best possible hand and the names of hands 
-Kathleen:: fixed remaining bugs and added gambling aspects to crazy eight and woo
+Kathleen:: fixed remaining bugs and added gambling aspects to crazy eight and woo, revised uml diagram
 ==============================================================
 
 2018-01-14:

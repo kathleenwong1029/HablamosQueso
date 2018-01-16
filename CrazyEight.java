@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class CrazyEight extends CardGame{
 
   //variables
-  private int deckLength;
   private boolean drawAgain;
   public Card topCard;
   private boolean winner=false;
@@ -52,8 +51,7 @@ public class CrazyEight extends CardGame{
     return (hand.size()==0);
   }
 
-
-  public void win(Card other){
+  public void play(Card other){
 
     System.out.println("\nThe topCard is: " + getTopCard() +"\n");
     outer:

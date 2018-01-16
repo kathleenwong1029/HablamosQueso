@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class CrazyEightOpponent extends CrazyEight{
 
-  private int deckLength;
   public String name;
   public Card topCard;
 
