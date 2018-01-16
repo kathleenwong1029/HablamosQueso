@@ -74,8 +74,17 @@ public class Woo {
     }
 
     public void playTexasHoldEm() {
-      TexasHoldEm specialK = new TexasHoldEm();
+      int earnings;
+      TexasHoldEm specialK = new TexasHoldEm(viewBal());
       specialK.play();
+      if(specialK.getWin()){
+        earnings = specialK.getBal() - viewBal();
+        myAccount.deposit(earnings);
+      }
+      else {
+        earnings = viewBal() - specialK.getBal();
+        myAccount.withdraw(earnings);
+      }
     }
 
     public void playCrazyEights() {

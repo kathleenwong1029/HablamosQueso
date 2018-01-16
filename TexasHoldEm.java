@@ -4,9 +4,13 @@ public class TexasHoldEm extends CardGame{
 
   public ArrayList<Card> board = new ArrayList<Card>();
   public int pot;
-  public int bal = 1000;
+  public int bal; //should be set to current balence
+  public boolean win;
 
-  //have to make sure I code something in case the deck runs out
+//constructy for setting bal
+public TexasHoldEm(int val){
+  bal = val;
+}
 
 //accessors
   public String getHand(){
@@ -23,6 +27,10 @@ public class TexasHoldEm extends CardGame{
 
   public int getBal(){
     return bal;
+  }
+
+  public boolean getWin(){
+    return win;
   }
 
 //getInstrustions
@@ -77,12 +85,16 @@ public class TexasHoldEm extends CardGame{
     pot += x;
   }
 
-  public void addtoBal(int x){
+  public void addToBal(int x){
     bal += x;
   }
 
   public void removeFromBal(int x){
     bal -= x;
+  }
+
+  public void setWin(boolean x){
+    win = x;
   }
 
 //the hard part
@@ -273,121 +285,142 @@ public class TexasHoldEm extends CardGame{
     }
 
     //starting the actual game
-    //pre-flop
-    r = 3;
-    while(r==3){
-      p("Dealing cards...\n");
-      deal();
-      p("Pocket: \n" + getHand());
-      p("\nBlind Bet\n");
+    while(true){
+      //pre-flop
+      r = 3;
+      while(r==3){
+        p("\nDealing cards...\n");
+        deal();
+        p("Pocket: \n" + getHand());
+        p("\nBlind Bet\n");
+        p("Balance: " + getBal() + "\n");
+        p("1. Check (Bet 50)\n2. Raise\n3. Fold\n");
+        r = Keyboard.readInt();
+        if (r == 1) {
+          if (getBal()>50){
+            removeFromBal(50);
+            addToPot(50);
+            p("Adding 50 to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+          }
+          else {
+            int allIn = getBal();
+            addToPot(allIn);
+            removeFromBal(allIn);
+            p("Adding "+ allIn + " to pot.\nYour balance: "+ getBal() + "\nPot: " + getPot() + "\n");
+          }
+          break;
+        }
+        else if (r == 2) {
+          p("\nHow much would you like to raise the bet?\n");
+          r = Keyboard.readInt();
+          while (r > getBal()){
+            p("Amount exceeds your balance. Please enter a valid amount.");
+            r = Keyboard.readInt();
+          }
+          removeFromBal(r);
+          addToPot(r);
+          p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+          break;
+        }
+        else {
+          p("\nDiscarding pocket...");
+          discardPocket();
+          addToBal(getPot()/2);
+          continue;
+        }
+      }
+
+      //flop
+      setBoard();
+      p("\nFlop\n");
+      p("Board: \n" + getBoard() + "\n");
+      p("Pocket: \n" + getHand() + "\n");
+      p("Pot: " + getPot());
       p("Balance: " + getBal() + "\n");
       p("1. Check\n2. Raise\n3. Fold\n");
       r = Keyboard.readInt();
-      if (r == 1) {
-        removeFromBal(50);
-        addToPot(50);
-        p("Adding 50 to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
-        break;
-      }
-      else if (r == 2) {
-        p("How much would you like to raise the bet?\n");
+      if (r == 2) {
+        p("\nHow much would you like to raise the bet?\n");
         r = Keyboard.readInt();
-        while (r > 950){
+        while (r > getBal()){
           p("Amount exceeds your balance. Please enter a valid amount.");
           r = Keyboard.readInt();
         }
         removeFromBal(r);
         addToPot(r);
         p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
-        break;
       }
-      else {
+      if (r == 3) {
+        p("\nDiscarding pocket...");
         discardPocket();
+        addToBal(getPot()/2);
+        continue;
       }
-    }
 
-    //flop
-    setBoard();
-    p("\nFlop\n");
-    p("Board: \n" + getBoard() + "\n");
-    p("Pocket: \n" + getHand() + "\n");
-    p("Pot: " + getPot());
-    p("Balance: " + getBal() + "\n");
-    p("1. Check\n2. Raise\n3. Fold\n");
-    r = Keyboard.readInt();
-    if (r == 2) {
-      p("How much would you like to raise the bet?\n");
+      //turn
+      addToBoard();
+      p("\nTurn\n");
+      p("Board: \n" + getBoard() + "\n");
+      p("Pocket: \n" + getHand() + "\n");
+      p("Pot: " + getPot());
+      p("Balance: " + getBal() + "\n");
+      p("1. Check\n2. Raise\n3. Fold\n");
       r = Keyboard.readInt();
-      while (r > getBal()){
-        p("Amount exceeds your balance. Please enter a valid amount.");
+      if (r == 2) {
+        p("\nHow much would you like to raise the bet?\n");
         r = Keyboard.readInt();
+        while (r > getBal()){
+          p("Amount exceeds your balance. Please enter a valid amount.");
+          r = Keyboard.readInt();
+        }
+        removeFromBal(r);
+        addToPot(r);
+        p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
       }
-      removeFromBal(r);
-      addToPot(r);
-      p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
-    }
-    if (r == 3) {
-      discardPocket();
-      p("Still finding a way to make the game reset");
-    }
+      if (r == 3) {
+        p("\nDiscarding pocket");
+        discardPocket();
+        addToBal(getPot()/2);
+        continue;
+      }
 
-    //turn
-    addToBoard();
-    p("\nTurn\n");
-    p("Board: \n" + getBoard() + "\n");
-    p("Pocket: \n" + getHand() + "\n");
-    p("Pot: " + getPot());
-    p("Balance: " + getBal() + "\n");
-    p("1. Check\n2. Raise\n3. Fold\n");
-    r = Keyboard.readInt();
-    if (r == 2) {
-      p("How much would you like to raise the bet?\n");
+      //river
+      addToBoard();
+      p("\nRiver\n");
+      p("Board: \n" + getBoard() + "\n");
+      p("Pocket: \n" + getHand() + "\n");
+      p("Pot: " + getPot());
+      p("Balance: " + getBal() + "\n");
+      p("1. Check\n2. Raise\n3. Fold\n");
       r = Keyboard.readInt();
-      while (r > getBal()){
-        p("Amount exceeds your balance. Please enter a valid amount.");
+      if (r == 2) {
+        p("\nHow much would you like to raise the bet?\n");
         r = Keyboard.readInt();
+        while (r > getBal()){
+          p("Amount exceeds your balance. Please enter a valid amount.");
+          r = Keyboard.readInt();
+        }
+        removeFromBal(r);
+        addToPot(r);
+        p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
       }
-      removeFromBal(r);
-      addToPot(r);
-      p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
-    }
-    if (r == 3) {
-      discardPocket();
-      p("Still finding a way to make the game reset");
-    }
-
-    //river
-    addToBoard();
-    p("\nRiver\n");
-    p("Board: \n" + getBoard() + "\n");
-    p("Pocket: \n" + getHand() + "\n");
-    p("Pot: " + getPot());
-    p("Balance: " + getBal() + "\n");
-    p("1. Check\n2. Raise\n3. Fold\n");
-    r = Keyboard.readInt();
-    if (r == 2) {
-      p("How much would you like to raise the bet?\n");
-      r = Keyboard.readInt();
-      while (r > getBal()){
-        p("Amount exceeds your balance. Please enter a valid amount.");
-        r = Keyboard.readInt();
+      if (r == 3) {
+        p("\nDiscarding pocket...");
+        discardPocket();
+        addToBal(getPot()/2);
+        continue;
       }
-      removeFromBal(r);
-      addToPot(r);
-      p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
-    }
-    if (r == 3) {
-      discardPocket();
-      p("Still finding a way to make the game reset");
+      break;
     }
 
     //showdown
     p("\nShowdown!\n");
     p("Best possible hand: \n" + bestPossibleHand());
     p("Since there's no opponent playing against you yet yay you win the whole pot! thx 4 play");
-    addtoBal(getPot());
+    setWin(true);
+    addToBal(getPot());
     p("Balance: " + getBal());
-  }
+}
 
 
 
@@ -413,7 +446,7 @@ public class TexasHoldEm extends CardGame{
 
 //main
   public static void main(String[] args){
-    TexasHoldEm specialK = new TexasHoldEm();
+    TexasHoldEm specialK = new TexasHoldEm(12);
     System.out.println(specialK.getInstructions());
     specialK.deal();
     System.out.println("Pocket: \n" + specialK.getHand());
