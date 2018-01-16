@@ -81,7 +81,7 @@ public class Blackjack extends CardGame {
 	return u;
     }
 	    
-    public  void play() {
+    public  void play() {//main function, allows you to play the game, split your hand, and basically do all the special features of blackjack
 	
 	int u=1;
 	gamble();
