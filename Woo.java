@@ -74,6 +74,8 @@ public class Woo {
     }
 
     public void playTexasHoldEm() {
+      TexasHoldEm specialK = new TexasHoldEm();
+      specialK.play();
     }
 
     public void playCrazyEights() {
@@ -154,6 +156,10 @@ public class Woo {
 
   if( user==2){
     jane.playCrazyEights();
+  }
+
+  if(user==3){
+    jane.playTexasHoldEm();
   }
   String tier="";
   if (user==4) {

@@ -1,10 +1,10 @@
 import cs1.Keyboard;
 import java.util.ArrayList;
-import java.util.HashMap;
 public class TexasHoldEm extends CardGame{
 
   public ArrayList<Card> board = new ArrayList<Card>();
   public int pot;
+  public int bal = 1000;
 
   //have to make sure I code something in case the deck runs out
 
@@ -21,16 +21,27 @@ public class TexasHoldEm extends CardGame{
     return pot;
   }
 
+  public int getBal(){
+    return bal;
+  }
+
 //getInstrustions
   public String getInstructions(){
     return "Check back later for instructions \n";
   }
 
-//adds one random card from the deck to hand
+//adds two random cards from the deck to hand
   public void deal(){
     shuffle(deck);
     hand.add(deck.get(0));
     deck.remove(0);
+    hand.add(deck.get(0));
+    deck.remove(0);
+  }
+
+//overrides abstract method but doesn't really do much
+  public void deal(ArrayList<Card> deck){
+    //nice one
   }
 
 //resets pocket after a round
@@ -62,9 +73,17 @@ public class TexasHoldEm extends CardGame{
     deck.remove(0);
   }
 
-  /*public void placeBet(int x){
+  public void addToPot(int x){
+    pot += x;
+  }
 
-  }*/
+  public void addtoBal(int x){
+    bal += x;
+  }
+
+  public void removeFromBal(int x){
+    bal -= x;
+  }
 
 //the hard part
   public int getComboVal(Card v, Card w, Card x, Card y, Card z){
@@ -232,6 +251,149 @@ public class TexasHoldEm extends CardGame{
     return printArray(bestHand) + "\n" + getComboName(bestHand.get(0), bestHand.get(1), bestHand.get(2), bestHand.get(3), bestHand.get(4));
   }
 
+  //print shoutcut because I have so much to do and so little tiempo
+  private static void p(String stuff) {
+        System.out.println(stuff);
+    }
+
+  public void play(){
+    int r; //player input
+
+    //title screen
+    String title = "Texas Hold'em\nEnter 1 for instructions.\nEnter 2 to continue to game.\n";
+    p(title);
+    r = Keyboard.readInt();
+    while (r == 1) {
+      p(getInstructions() + "Enter 1 to return\n");
+      r = Keyboard.readInt();
+      if (r == 1){
+        p(title);
+        r = Keyboard.readInt();
+      }
+    }
+
+    //starting the actual game
+    //pre-flop
+    r = 3;
+    while(r==3){
+      p("Dealing cards...\n");
+      deal();
+      p("Pocket: \n" + getHand());
+      p("\nBlind Bet\n");
+      p("Balance: " + getBal() + "\n");
+      p("1. Check\n2. Raise\n3. Fold\n");
+      r = Keyboard.readInt();
+      if (r == 1) {
+        removeFromBal(50);
+        addToPot(50);
+        p("Adding 50 to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+        break;
+      }
+      else if (r == 2) {
+        p("How much would you like to raise the bet?\n");
+        r = Keyboard.readInt();
+        while (r > 950){
+          p("Amount exceeds your balance. Please enter a valid amount.");
+          r = Keyboard.readInt();
+        }
+        removeFromBal(r);
+        addToPot(r);
+        p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+        break;
+      }
+      else {
+        discardPocket();
+      }
+    }
+
+    //flop
+    setBoard();
+    p("\nFlop\n");
+    p("Board: \n" + getBoard() + "\n");
+    p("Pocket: \n" + getHand() + "\n");
+    p("Pot: " + getPot());
+    p("Balance: " + getBal() + "\n");
+    p("1. Check\n2. Raise\n3. Fold\n");
+    r = Keyboard.readInt();
+    if (r == 2) {
+      p("How much would you like to raise the bet?\n");
+      r = Keyboard.readInt();
+      while (r > getBal()){
+        p("Amount exceeds your balance. Please enter a valid amount.");
+        r = Keyboard.readInt();
+      }
+      removeFromBal(r);
+      addToPot(r);
+      p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+    }
+    if (r == 3) {
+      discardPocket();
+      p("Still finding a way to make the game reset");
+    }
+
+    //turn
+    addToBoard();
+    p("\nTurn\n");
+    p("Board: \n" + getBoard() + "\n");
+    p("Pocket: \n" + getHand() + "\n");
+    p("Pot: " + getPot());
+    p("Balance: " + getBal() + "\n");
+    p("1. Check\n2. Raise\n3. Fold\n");
+    r = Keyboard.readInt();
+    if (r == 2) {
+      p("How much would you like to raise the bet?\n");
+      r = Keyboard.readInt();
+      while (r > getBal()){
+        p("Amount exceeds your balance. Please enter a valid amount.");
+        r = Keyboard.readInt();
+      }
+      removeFromBal(r);
+      addToPot(r);
+      p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+    }
+    if (r == 3) {
+      discardPocket();
+      p("Still finding a way to make the game reset");
+    }
+
+    //river
+    addToBoard();
+    p("\nRiver\n");
+    p("Board: \n" + getBoard() + "\n");
+    p("Pocket: \n" + getHand() + "\n");
+    p("Pot: " + getPot());
+    p("Balance: " + getBal() + "\n");
+    p("1. Check\n2. Raise\n3. Fold\n");
+    r = Keyboard.readInt();
+    if (r == 2) {
+      p("How much would you like to raise the bet?\n");
+      r = Keyboard.readInt();
+      while (r > getBal()){
+        p("Amount exceeds your balance. Please enter a valid amount.");
+        r = Keyboard.readInt();
+      }
+      removeFromBal(r);
+      addToPot(r);
+      p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+    }
+    if (r == 3) {
+      discardPocket();
+      p("Still finding a way to make the game reset");
+    }
+
+    //showdown
+    p("\nShowdown!\n");
+    p("Best possible hand: \n" + bestPossibleHand());
+    p("Since there's no opponent playing against you yet yay you win the whole pot! thx 4 play");
+    addtoBal(getPot());
+    p("Balance: " + getBal());
+  }
+
+
+
+
+//----------------------------methods for testing-----------------------------
+
 //----setHand method for testing getComboVal method-----
   public void setHand(Card a, Card b){
     discardPocket();
@@ -249,11 +411,10 @@ public class TexasHoldEm extends CardGame{
       board.add(c);
   }
 
-//-------------------------test-------------------------
+//main
   public static void main(String[] args){
     TexasHoldEm specialK = new TexasHoldEm();
     System.out.println(specialK.getInstructions());
-    specialK.deal();
     specialK.deal();
     System.out.println("Pocket: \n" + specialK.getHand());
     specialK.setBoard();
