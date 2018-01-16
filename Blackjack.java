@@ -96,6 +96,7 @@ public class Blackjack extends CardGame {
 			 
 		    hand2.add(hand.get(0));
 		    hand.remove(0);
+		    deckLength-=1;
 			 
 		    while(u==1) {
 			System.out.println("One of your hands "+hand+"\n THe other hand "+hand2);
