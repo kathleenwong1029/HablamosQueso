@@ -12,12 +12,11 @@ A House of Cards
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<Wow, we so BOSS bc...>
+instantiating the same instance of something in a different class
+we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-instantiating the same instance of something in a different class
-we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet
 getComboVal method in TexasHoldEm still cannot detect all possible winning hands/combos (still need to add code for Three of a Kind, Full House, Pair, and Two Pairs)
 Need to update UML and flowchart
 
@@ -67,6 +66,7 @@ yyyy-mm-dd
 --------------------------------------------------------------
 Puneet ::  TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, added methods to get best possible hand and the names of hands 
 Kathleen:: fixed remaining bugs and added gambling aspects to crazy eight and woo, revised uml diagram
+James:: fixed blackjack(added more specific functionality), revised UML, made new flow chart(s)
 ==============================================================
 
 2018-01-14:

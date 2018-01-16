@@ -31,5 +31,6 @@ Jan 11th: have phase 1 of the project complete and debugged
 Jan 13th: have phase 2 of the project complete, start phase 3
 Jan 15th: have phase 3 of project complete, start phase 4
 Jan 16th: have phase 4 of the project complete
+Jan17th: debugging
 Jan 18th: extra stuff started??
 
