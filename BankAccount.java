@@ -29,7 +29,7 @@ public class BankAccount{
     }
   }
     public String toString() {
-	return "Your balance is :"+getBal()+"\n";
+	return "Your balance is: "+getBal();
     }
 
 

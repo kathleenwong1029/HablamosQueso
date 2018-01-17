@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 public class TexasOpponent extends TexasHoldEm {
 
-  public boolean bettingOff = false;
+  public boolean bettingOff;
+  public int raiseCnt;
 
   //constructy
   public TexasOpponent(){
     super(500);
     bettingOff = false;
+    raiseCnt = 0;
   }
 
   public void setBettingOff(){
@@ -38,6 +40,32 @@ public class TexasOpponent extends TexasHoldEm {
       }
       return false;
     }
+  }
+
+  public void addToRaiseCnt(){
+    raiseCnt++;
+  }
+
+  public boolean foldChance(){
+    if (raiseCnt==1){
+      if (Math.random()<0.05){ //5% chance that the opponent will fold if player raises once
+        return true;
+      }
+      return false;
+    }
+    if (raiseCnt==2){
+      if (Math.random()<0.1){ //10% chance that the opponent will fold if the player raises twice
+        return true;
+      }
+      return false;
+    }
+    if (raiseCnt > 2){
+      if (Math.random()<0.25){ //25% chance that the opponent will fold if the player raises more than twice
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 
 

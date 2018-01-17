@@ -1,7 +1,7 @@
 import cs1.Keyboard;
 public class Woo {
     //instance var
-    public String hallOFFame;
+    //public String hallOFFame;
     public static BankAccount myAccount;
     //constructor
     public Woo() {
@@ -174,9 +174,8 @@ public class Woo {
   if(user==3){
     jane.playTexasHoldEm();
   }
-  String tier="";
-  if (user==4) {
 
+    String tier = "";
     if(myAccount.getBal()<2000){
       tier="gold";
     }
@@ -191,10 +190,13 @@ public class Woo {
       System.out.println("You have reached the highest tier in this casino.Goodbye!");
       break;
     }
-      System.out.println(myAccount);
-      System.out.println("Your status is: "+ tier);
-	  }
-	System.out.println("1. continue playing \n 2. Exit casino");
+
+  if (user==4) {
+    System.out.println(myAccount);
+    System.out.println("Your status is: "+ tier);
+  }
+
+	System.out.println("1. Continue playing \n2. Exit casino");
 	int cas;
 	cas=Keyboard.readInt();
 	if(cas==2) {
