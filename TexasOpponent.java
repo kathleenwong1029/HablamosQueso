@@ -40,22 +40,6 @@ public class TexasOpponent extends TexasHoldEm {
     }
   }
 
-  //returns the hand value based on the string name
-  public int getBestComboVal(){
-    String holder = bestPossibleHand();
-    holder = holder.substring(holder.indexOf("]")+2);
-    if (holder.equals("Royal Flush")) {return 10;}
-    if (holder.equals("Straight Flush")) {return 9;}
-    if (holder.equals("Four of a Kind")) {return 8;}
-    if (holder.equals("Full House")) {return 7;}
-    if (holder.equals("Flush")) {return 6;}
-    if (holder.equals("Straight")) {return 5;}
-    if (holder.equals("Three of a Kind")) {return 4;}
-    if (holder.equals("Two Pairs")) {return 3;}
-    if (holder.equals("Pair")) {return 2;}
-    return 1;
-  }
-
 
 
 //----------------------------methods for testing-----------------------------
