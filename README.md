@@ -11,8 +11,11 @@ ability to play at the casino.
 
 ### Instructions
 ---
-To play our game, the user will compile Woo.java, which will list out the games
-available. The user will enter the number corresponding to the game that they want to play
+To play our game, the user will type into the terminal:
+1. javac Woo.java
+2. java Woo
+
+This will list out the games available. The user will enter the number corresponding to the game that they want to play
 in the terminal to start that game. If they require instructions, each game will
 have that option available. After playing each game, the user can check their
 balance. If they have a negative balance, they will be kicked out of the casino. Depending on the amount of money they have, the player
