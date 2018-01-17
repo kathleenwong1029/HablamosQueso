@@ -60,13 +60,13 @@ public class CrazyEight extends CardGame{
       System.out.println(printArray(hand));
       while(!(drawAgain)) {
       //ask player if they need to draw
-      System.out.println("Do you need to draw?(Type yes or no)");
+      System.out.println("Do you need to draw?(Type y for yes or n for no)");
       String draw =Keyboard.readString();
-      if(draw.equals("yes")){
+      if(draw.equals("y")){
         drawCard(deck);
       }
       System.out.println(printArray(hand));
-      if(draw.equals("no")){
+      if(draw.equals("n")){
         break ;
       }
     }

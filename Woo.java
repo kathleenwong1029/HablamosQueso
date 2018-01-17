@@ -147,8 +147,8 @@ public class Woo {
       }
       //if player wins, they earn five hundred dollars
       else{
-          myAccount.deposit(500);
-          System.out.println("You won 500 dollars!!!");
+          myAccount.deposit(100);
+          System.out.println("You won 1000 dollars!!!");
       }
     }
     public static void main(String[] args) {
