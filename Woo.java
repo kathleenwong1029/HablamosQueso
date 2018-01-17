@@ -45,12 +45,15 @@ public class Woo {
 		win=false;
 	    }
 	    if(tophie.sum(tophie.hand)>total && tophie.win) {
+		System.out.println("you lost to dealer!");
 		win=false;
 	    }
 	    if(pj.sum(pj.hand)>total && pj.win) {
+		System.out.println("you lost to BlackjackMeister");
 		win=false;
 	    }
 	    if(kdove.sum(kdove.hand)>total && kdove.win ) {
+		System.out.println("you lost to joe");
 		win=false;
 	    }
 	      if (win) {

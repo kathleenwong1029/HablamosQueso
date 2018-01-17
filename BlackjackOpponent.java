@@ -3,8 +3,8 @@ import java.lang.Math;
 public class BlackjackOpponent extends Blackjack {
     //second working edition
     /*remaining bugs:
-splitting a hand doesn't quite work. The hand is split, but no comparison is made.
-     */
+      splitting a hand doesn't quite work. The hand is split, but no comparison is made.
+    */
     public boolean win=true;
     public String name;
     public Card headCard;
@@ -54,9 +54,9 @@ splitting a hand doesn't quite work. The hand is split, but no comparison is mad
     /***AI that determines what the opponent will do
 	AI(deck, hand, hcard)
 	- deck is the deck of cards that will be used to draw(this allows us to standardize the deck across all instances)
--hand is the hand that we currently have
--hcard is the card the dealer is displaying
-postcond: outputs the sum of the hand, adds cards as needed to hand
+	-hand is the hand that we currently have
+	-hcard is the card the dealer is displaying
+	postcond: outputs the sum of the hand, adds cards as needed to hand
     ***/
     public int AI(ArrayList<Card> deck,ArrayList<Card> hand,Card hCard) {
 	headCard=hCard;
@@ -77,12 +77,15 @@ postcond: outputs the sum of the hand, adds cards as needed to hand
 	    
 	    addtohand(deck);//otherwise, add another card
 	    System.out.println(name+" added card");//tells the user that opponent added card
+	}
+	if(sum(hand)>sum2||sum2>21 ) {//in a situation where there are two decks(when there is a pair), this compares the two and outputs the higher one
+	    if(sum(hand)<22 || sum2==0) {
+		sum2=sum(hand);
+		hand=deck2;
 	    }
-	if((sum(hand)>sum2 && sum(hand)<22)||(sum(hand)<21 && sum2>21) ) {//in a situation where there are two decks(when there is a pair), this compares the two and outputs the higher one
-	    sum2=sum(hand);
-	    hand=deck2;
 	    //deckLength=hand.size();
 	}
+	//System.out.println(sum2);//diag
 	if (sum2>21)//if the final sum is greater than 21
 	    win=false;// we cannot win
 	
@@ -95,14 +98,14 @@ postcond: outputs the sum of the hand, adds cards as needed to hand
 	}
 	
         
-	while (sum(deck)<17) {//must add cards if below 17
-	    if (deckLength>4) {
+	while (sum(hand)<17) {//must add cards if below 17
+	    if (hand.size()>4) {
 		break;
 	    }
 	    addtohand(deck);
 	    System.out.println(name+" added card");
-	    }
-	if (sum(deck)>21)
+	}
+	if (sum(hand)>21)
 	    win=false;
 	return hand.get(0);
     }
