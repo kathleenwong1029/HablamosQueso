@@ -2,12 +2,14 @@
 ---
 James Haung, Puneet Johal, Kathleen Wong
 
+
 ## General Description
 ---
 Our project is a simulation of a casino experience. The player can choose to
 play three different card games : Blackjack, Crazy Eights and Texas Hold'em.
 Each game will influence the balance of a bank account that controls the user's
 ability to play at the casino.
+
 
 ### Instructions
 ---
