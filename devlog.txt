@@ -12,13 +12,13 @@ A House of Cards
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-instantiating the same instance of something in a different class
+instantiating the same instance of something in a different class, fixing the specific bugs
 We were able to create a program that is able to recognize all playable poker hands, and discerns the highest playable hand given a set of cards!
+we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet(how we did it: we made the deck a parameter in our computer opponent classes, and thus when we instantiated an instance or an action of this class from the main class, or the card game class, the deck could be carried over to the subclass.)
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Need to update UML and flowchart
-we want the opponents to pull from same deck//access same cards as player, but still have not figured it out yet(how we did it: we made the deck a parameter in our computer opponent classes, and thus when we instantiated an instance or an action of this class from the main class, or the card game class, the deck could be carried over to the subclass.)
+*Need to update UML and flowchart*
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,7 +63,11 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
+2018-01-16
+--------------------------------------------------------------
+James:: blackjack almost certainly bug free! Added stuff to flow chart. 
 
+==============================================================
 2018-01-15
 --------------------------------------------------------------
 Puneet ::  TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, added methods to get best possible hand and the names of hands, added play method to TexasHoldEm to make it playable from Woo, primitive but working game with functional gambling but no opponent
