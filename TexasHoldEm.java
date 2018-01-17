@@ -268,8 +268,9 @@ public TexasHoldEm(int val){
         System.out.println(stuff);
     }
 
-  public void play(){
+  public void play(TexasOpponent opp){
     int r; //player input
+    int o; //oppponent input
 
     //title screen
     String title = "Texas Hold'em\nEnter 1 for instructions.\nEnter 2 to continue to game.\n";
@@ -291,6 +292,7 @@ public TexasHoldEm(int val){
       while(r==3){
         p("\nDealing cards...\n");
         deal();
+        opp.deal();
         p("Pocket: \n" + getHand());
         p("\nBlind Bet\n");
         p("Balance: " + getBal() + "\n");
@@ -300,26 +302,57 @@ public TexasHoldEm(int val){
           if (getBal()>50){
             removeFromBal(50);
             addToPot(50);
-            p("Adding 50 to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+            p("Adding 50 to pot.\nYour balance: " + getBal());
+            opp.removeFromBal(50);
+            addToPot(50);
+            p("\nOpponent added 50 to pot!\nOpponent balance: " + opp.getBal());
+            p("Pot: " + getPot() + "\n");
           }
           else {
+            opp.setBettingOff();
             int allIn = getBal();
             addToPot(allIn);
             removeFromBal(allIn);
-            p("Adding "+ allIn + " to pot.\nYour balance: "+ getBal() + "\nPot: " + getPot() + "\n");
+            p("Adding "+ allIn + " to pot.\nYour balance: "+ getBal());
+            opp.removeFromBal(allIn);
+            addToPot(allIn);
+            p("\nOpponent added "+ allIn + " to pot!\nOpponent balance: " + opp.getBal());
+            p("Pot: " + getPot() + "\n");
           }
           break;
         }
         else if (r == 2) {
           p("\nHow much would you like to raise the bet?\n");
           r = Keyboard.readInt();
-          while (r > getBal()){
-            p("Amount exceeds your balance. Please enter a valid amount.");
+          while (r > getBal() || r > opp.getBal()){
+            p("Amount exceeds balance. Please enter a valid amount.");
             r = Keyboard.readInt();
           }
           removeFromBal(r);
           addToPot(r);
-          p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+          p("Adding "+r+" to pot.\nYour balance: " + getBal());
+          opp.removeFromBal(r);
+          addToPot(r);
+          p("Opponent also added "+r+" to pot.\nOpponent balance: " + getBal());
+          p("Pot: " + getPot() + "\n");
+          if (opp.blindBet()){
+            p("Opponent wants to raise 50.\n1. Call 50\n2. Fold");
+            r = Keyboard.readInt();
+            if (r==1){
+              removeFromBal(50);
+              addToPot(50);
+              p("Adding 50 to pot.\nYour balance: " + getBal());
+              opp.removeFromBal(50);
+              addToPot(50);
+              p("Pot: " + getPot() + "\n");
+            }
+            if (r==2){
+              p("\nDiscarding pocket...");
+              discardPocket();
+              addToBal(getPot()/2);
+              continue;
+            }
+          }
           break;
         }
         else {
@@ -470,6 +503,7 @@ public TexasHoldEm(int val){
     specialK.manualSetBoard(a,b,c);
     System.out.println("Board: \n" + specialK.getBoard());
     System.out.println("Hand value: " + specialK.getComboVal(a,b,c,d,e));
+    System.out.println("Best possible hand: " + specialK.bestPossibleHand());
   }
 
 }

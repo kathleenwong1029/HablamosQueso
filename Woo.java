@@ -79,7 +79,8 @@ public class Woo {
     public void playTexasHoldEm() {
       int earnings;
       TexasHoldEm specialK = new TexasHoldEm(viewBal());
-      specialK.play();
+      TexasOpponent yamyam = new TexasOpponent();
+      specialK.play(yamyam);
       if(specialK.getWin()){
         earnings = specialK.getBal() - viewBal();
         myAccount.deposit(earnings);
