@@ -18,12 +18,12 @@ we want the opponents to pull from same deck//access same cards as player, but s
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*Need to update UML and flowchart*
+TexasHoldEm calls draw when player and opponent play the same hand, instead of going off of the highest card. The pot is split. --> Didn't have enough time to implement this feature
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Poker has over 2 million unique winning card combinations
--those instance vars can get very annoying, as they carry over but without the data.
+those instance vars can get very annoying, as they carry over but without the data.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -35,8 +35,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-pull before push
-Don't talk to strangers at the library and DO NOT shake their hand if they offer theirs just to be polite because they might grab it and not let go
+pull before you push
 Planning before doing is CRUCIAL
 we need a good UML diagram in the beginning
 and a more unified approach
@@ -63,11 +62,13 @@ yyyy-mm-dd
 <Member> :: <Thing member did.>
 <Member> :: <Thing member did.>
 ==============================================================
+
 2018-01-16
 --------------------------------------------------------------
-James:: blackjack almost certainly bug free! Added stuff to flow chart. 
-
+James :: blackjack almost certainly bug free! Added stuff to flow chart.
+Puneet :: TexasOpponent now functional, including chance to raise bet based on the value of best possible hand each round, and chance to fold based on how many times the player has raised the bet. Showdown happens after three rounds of betting and winner takes pot. Integrated BankAccount into betting during the game. Added instructions for TexasHoldEm. Fixed up Woo, UML, and README.
 ==============================================================
+
 2018-01-15
 --------------------------------------------------------------
 Puneet ::  TexasHoldEm now able to recognize all playable poker hands, added attribute sVal to Card object, added methods to get best possible hand and the names of hands, added play method to TexasHoldEm to make it playable from Woo, primitive but working game with functional gambling but no opponent
