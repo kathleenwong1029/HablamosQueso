@@ -6,6 +6,7 @@ public class TexasOpponent extends TexasHoldEm {
   //constructy
   public TexasOpponent(){
     super(500);
+    bettingOff = false;
   }
 
   public void setBettingOff(){
@@ -22,6 +23,17 @@ public class TexasOpponent extends TexasHoldEm {
     if (bettingOff == true) {return false;}
     else {
       if (Math.random()<0.05){ //5% chance that the opponent will try to raise blind bet
+        return true;
+      }
+      return false;
+    }
+  }
+
+  public boolean raiseChance(){
+    if (bettingOff == true) {return false;}
+    if (getBal()<100) {return false;}
+    else {
+      if (Math.random()*10 < getBestComboVal()){ //always at least 10% chance of raising regardless of hand, will be more likely to raise the higher the value of the current best possible hand
         return true;
       }
       return false;

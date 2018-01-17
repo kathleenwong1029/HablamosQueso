@@ -296,7 +296,7 @@ public TexasHoldEm(int val){
         p("Pocket: \n" + getHand());
         p("\nBlind Bet\n");
         p("Balance: " + getBal() + "\n");
-        p("1. Check (Bet 50)\n2. Raise\n3. Fold\n");
+        p("1. Call 50\n2. Raise\n3. Fold\n");
         r = Keyboard.readInt();
         if (r == 1) {
           if (getBal()>50){
@@ -333,18 +333,23 @@ public TexasHoldEm(int val){
           p("Adding "+r+" to pot.\nYour balance: " + getBal());
           opp.removeFromBal(r);
           addToPot(r);
-          p("Opponent also added "+r+" to pot.\nOpponent balance: " + getBal());
+          p("Opponent also added "+r+" to pot.\nOpponent balance: " + opp.getBal());
           p("Pot: " + getPot() + "\n");
           if (opp.blindBet()){
-            p("Opponent wants to raise 50.\n1. Call 50\n2. Fold");
+            p("Opponent wants to raise 50.\n1. Call 50\n2. Fold\n");
             r = Keyboard.readInt();
-            if (r==1){
+            if (r==1 && getBal()>=50){
               removeFromBal(50);
               addToPot(50);
               p("Adding 50 to pot.\nYour balance: " + getBal());
               opp.removeFromBal(50);
               addToPot(50);
+              p("Opponent also added 50 to pot.\nOpponent balance: " + opp.getBal());
               p("Pot: " + getPot() + "\n");
+            }
+            if (r==1 && getBal()<50){
+              p("Amount exceeds balance.");
+              r = 2;
             }
             if (r==2){
               p("\nDiscarding pocket...");
@@ -365,6 +370,7 @@ public TexasHoldEm(int val){
 
       //flop
       setBoard();
+      opp.manualSetBoard(board.get(0), board.get(1), board.get(2));
       p("\nFlop\n");
       p("Board: \n" + getBoard() + "\n");
       p("Pocket: \n" + getHand() + "\n");
@@ -375,13 +381,17 @@ public TexasHoldEm(int val){
       if (r == 2) {
         p("\nHow much would you like to raise the bet?\n");
         r = Keyboard.readInt();
-        while (r > getBal()){
-          p("Amount exceeds your balance. Please enter a valid amount.");
+        while (r > getBal() || r > opp.getBal()){
+          p("Amount exceeds balance. Please enter a valid amount.");
           r = Keyboard.readInt();
         }
         removeFromBal(r);
         addToPot(r);
-        p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+        p("Adding "+r+" to pot.\nYour balance: " + getBal());
+        opp.removeFromBal(r);
+        addToPot(r);
+        p("Opponent also added "+r+" to pot.\nOpponent balance: " + opp.getBal());
+        p("Pot: " + getPot() + "\n");
       }
       if (r == 3) {
         p("\nDiscarding pocket...");
@@ -389,9 +399,33 @@ public TexasHoldEm(int val){
         addToBal(getPot()/2);
         continue;
       }
+      if (opp.raiseChance()){
+          p("Opponent wants to raise 100.\n1. Call 100\n2. Fold");
+          r = Keyboard.readInt();
+          if (r==1 && getBal()>=100){
+            removeFromBal(100);
+            addToPot(100);
+            p("Adding 100 to pot.\nYour balance: " + getBal());
+            opp.removeFromBal(100);
+            addToPot(100);
+            p("Opponent also added 100 to pot.\nOpponent balance: " + opp.getBal());
+            p("Pot: " + getPot() + "\n");
+          }
+          if (r==1 && getBal()<100){
+            p("Amount exceeds balance.");
+            r = 2;
+          }
+          if (r==2){
+            p("\nDiscarding pocket...");
+            discardPocket();
+            addToBal(getPot()/2);
+            continue;
+          }
+      }
 
       //turn
       addToBoard();
+      opp.manualAddToBoard(board.get(3));
       p("\nTurn\n");
       p("Board: \n" + getBoard() + "\n");
       p("Pocket: \n" + getHand() + "\n");
@@ -402,23 +436,51 @@ public TexasHoldEm(int val){
       if (r == 2) {
         p("\nHow much would you like to raise the bet?\n");
         r = Keyboard.readInt();
-        while (r > getBal()){
-          p("Amount exceeds your balance. Please enter a valid amount.");
+        while (r > getBal() || r > opp.getBal()){
+          p("Amount exceeds balance. Please enter a valid amount.");
           r = Keyboard.readInt();
         }
         removeFromBal(r);
         addToPot(r);
-        p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+        p("Adding "+r+" to pot.\nYour balance: " + getBal());
+        opp.removeFromBal(r);
+        addToPot(r);
+        p("Opponent also added "+r+" to pot.\nOpponent balance: " + opp.getBal());
+        p("Pot: " + getPot() + "\n");
       }
       if (r == 3) {
-        p("\nDiscarding pocket");
+        p("\nDiscarding pocket...");
         discardPocket();
         addToBal(getPot()/2);
         continue;
       }
+      if (opp.raiseChance()){
+          p("Opponent wants to raise 100.\n1. Call 100\n2. Fold");
+          r = Keyboard.readInt();
+          if (r==1 && getBal()>=100){
+            removeFromBal(100);
+            addToPot(100);
+            p("Adding 100 to pot.\nYour balance: " + getBal());
+            opp.removeFromBal(100);
+            addToPot(100);
+            p("Opponent also added 100 to pot.\nOpponent balance: " + opp.getBal());
+            p("Pot: " + getPot() + "\n");
+          }
+          if (r==1 && getBal()<100){
+            p("Amount exceeds balance.");
+            r = 2;
+          }
+          if (r==2){
+            p("\nDiscarding pocket...");
+            discardPocket();
+            addToBal(getPot()/2);
+            continue;
+          }
+      }
 
       //river
       addToBoard();
+      opp.manualAddToBoard(board.get(4));
       p("\nRiver\n");
       p("Board: \n" + getBoard() + "\n");
       p("Pocket: \n" + getHand() + "\n");
@@ -429,19 +491,46 @@ public TexasHoldEm(int val){
       if (r == 2) {
         p("\nHow much would you like to raise the bet?\n");
         r = Keyboard.readInt();
-        while (r > getBal()){
-          p("Amount exceeds your balance. Please enter a valid amount.");
+        while (r > getBal() || r > opp.getBal()){
+          p("Amount exceeds balance. Please enter a valid amount.");
           r = Keyboard.readInt();
         }
         removeFromBal(r);
         addToPot(r);
-        p("Adding "+r+" to pot.\nYour balance: " + getBal() +"\nPot: " + getPot() + "\n");
+        p("Adding "+r+" to pot.\nYour balance: " + getBal());
+        opp.removeFromBal(r);
+        addToPot(r);
+        p("Opponent also added "+r+" to pot.\nOpponent balance: " + opp.getBal());
+        p("Pot: " + getPot() + "\n");
       }
       if (r == 3) {
         p("\nDiscarding pocket...");
         discardPocket();
         addToBal(getPot()/2);
         continue;
+      }
+      if (opp.raiseChance()){
+          p("Opponent wants to raise 100.\n1. Call 100\n2. Fold");
+          r = Keyboard.readInt();
+          if (r==1 && getBal()>=100){
+            removeFromBal(100);
+            addToPot(100);
+            p("Adding 100 to pot.\nYour balance: " + getBal());
+            opp.removeFromBal(100);
+            addToPot(100);
+            p("Opponent also added 100 to pot.\nOpponent balance: " + opp.getBal());
+            p("Pot: " + getPot() + "\n");
+          }
+          if (r==1 && getBal()<100){
+            p("Amount exceeds balance.");
+            r = 2;
+          }
+          if (r==2){
+            p("\nDiscarding pocket...");
+            discardPocket();
+            addToBal(getPot()/2);
+            continue;
+          }
       }
       break;
     }
