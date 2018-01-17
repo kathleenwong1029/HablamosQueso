@@ -1,7 +1,6 @@
 # HablamosQueso
 ---
 James Haung, Puneet Johal, Kathleen Wong
-\n
 
 ## General Description
 ---
