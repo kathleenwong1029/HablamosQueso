@@ -35,7 +35,7 @@ public TexasHoldEm(int val){
 
 //getInstrustions
   public String getInstructions(){
-    return "Check back later for instructions \n";
+    return "The objective of TexasHoldEm is to either play the better hand to win the pot, or to intimidate the opponent into giving up their bets by placing lots of high bets.\nThe game involves a shared set of five cards, called the board, and two cards per individual called the hole or pocket. Each game involves four rounds of betting, in which you can either:\n- Check, or pass\n- Raise, or add money to the pot\n- Fold, or give up your pocket and forfeit your bets to the opponent\nThe first round of betting takes place after the pocket is dealt, the second after the first three cards of the board are revealed (fold), the third after a fourth board card is revealed (turn), and the fourth after the final board card is revealed (river).\nDuring any round, if the opponent raises a bet, you can either follow up on that bet by placing the same amount from your own balence into the pot, or fold and forfeit your previously placed bets.\nThe final winner is determined by who plays the better poker hand.\n";
   }
 
 //adds two random cards from the deck to hand
@@ -288,7 +288,7 @@ public TexasHoldEm(int val){
     int r; //player input
 
     //title screen
-    String title = "Texas Hold'em\nEnter 1 for instructions.\nEnter 2 to continue to game.\n";
+    String title = "\nTexas Hold'em\nEnter 1 for instructions.\nEnter 2 to continue to game.\n";
     p(title);
     r = Keyboard.readInt();
     while (r == 1) {
