@@ -23,7 +23,7 @@ public class Blackjack extends CardGame {
 	deckLength=2;//deck length is 2 cards
     }
     public void addtohand(ArrayList<Card> deck) {//adds card to your hand, if you want to. This takes in deck, to keep the deck universal for when there are opponents.
-	if (deckLength>4) {
+	if (hand.size()>4) {
 	    //you can't have more than 5 cards
 	}
 	else {
@@ -36,7 +36,7 @@ public class Blackjack extends CardGame {
     }
     public int sum(ArrayList<Card> hand) {//sums up value of cards
 	int sum=0;//return value
-	for(int i=0; i<deckLength; i++) {//goes thru each card!
+	for(int i=0; i<hand.size(); i++) {//goes thru each card!
 	    if(hand.get(i).getValue()>10){//if the value of the card is greater than 10, than downcast it
 		sum+=10;
 	    }
@@ -101,15 +101,17 @@ public class Blackjack extends CardGame {
 			 
 		    while(u==1) {
 			System.out.println("One of your hands "+hand+"\n THe other hand "+hand2);
-			System.out.println("Add cards to one of your hands? 1 for yes, 2 for no");
+			System.out.println("Add cards to the other hand? 1 for yes, 2 for no");
 			u=Keyboard.readInt();
 			if (u==2) {
 			    break;
 			}
+			deckLength+=1;
 			hand2.add(deck.get(0));
 			deck.remove(0);
 			    
 		    }
+		    System.out.println("now you can add cards to the other deck!");
 		    total2=sum(hand2);
 		}
 		    
@@ -134,7 +136,10 @@ public class Blackjack extends CardGame {
 	System.out.println("These are your cards\n"+printArray(hand));
 	    
 	total=sum(hand);
-	if (total2> total ||( total2<22 && total>21)) {
+	if ((total2> total && total2<22) ||( total2<22 && total>21)) {
+	    if (total2>0) {
+		System.out.println("your other hand was superior!");
+	    }
 	    total=total2;
 	}
 	//lists sum and opponent hands
