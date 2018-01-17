@@ -63,8 +63,8 @@ postcond: outputs the sum of the hand, adds cards as needed to hand
 	int sum2=0;
         
 	//System.out.println(hand);
-        if (deckLength>1 && hand.get(0).value==hand.get(1).value && sum(deck)<17 && deckLength<3) {//if there is a pair, and splitting the deck up will lead to more benefit than harm, then it can be split up
-	    System.out.println(hand);
+        if (hand.size()>1 && hand.get(0).value==hand.get(1).value && sum(deck)<17 && deckLength<3) {//if there is a pair, and splitting the deck up will lead to more benefit than harm, then it can be split up
+	    System.out.println(name+" split his hand");
 	  
 	    deck2.add(hand.get(0));
 	    hand.remove(0);
@@ -78,7 +78,7 @@ postcond: outputs the sum of the hand, adds cards as needed to hand
 	    addtohand(deck);//otherwise, add another card
 	    System.out.println(name+" added card");//tells the user that opponent added card
 	    }
-	if((sum(hand)>sum2 && sum(hand)<22)|| sum2>21 ) {//in a situation where there are two decks(when there is a pair), this compares the two and outputs the higher one
+	if((sum(hand)>sum2 && sum(hand)<22)||(sum(hand)<21 && sum2>21) ) {//in a situation where there are two decks(when there is a pair), this compares the two and outputs the higher one
 	    sum2=sum(hand);
 	    hand=deck2;
 	    //deckLength=hand.size();

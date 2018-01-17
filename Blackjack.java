@@ -87,11 +87,12 @@ public class Blackjack extends CardGame {
 	gamble();
 	System.out.println("These are your cards: \n"+printArray(hand));
 	while(u==1) {
-	    if (hand.get(0).value==hand.get(1).value) {
+	    if (hand.get(0).value==hand.get(1).value) {//split card
 		System.out.println("want to split your cards?(this doubles your bet, and you will basically have two chances to get as close to 21 as possible!) 1 for yes, 2 for no");
 		u=Keyboard.readInt();
 		if (u==1) {
-		    u+=y;
+		    bet+=y;
+		    y+=y;
 		    ArrayList<Card> hand2=new ArrayList<Card>();
 			 
 		    hand2.add(hand.get(0));
@@ -106,6 +107,7 @@ public class Blackjack extends CardGame {
 			    break;
 			}
 			hand2.add(deck.get(0));
+			deck.remove(0);
 			    
 		    }
 		    total2=sum(hand2);
@@ -132,7 +134,7 @@ public class Blackjack extends CardGame {
 	System.out.println("These are your cards\n"+printArray(hand));
 	    
 	total=sum(hand);
-	if (total2> total && total2<22) {
+	if (total2> total ||( total2<22 && total>21)) {
 	    total=total2;
 	}
 	//lists sum and opponent hands
