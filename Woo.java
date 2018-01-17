@@ -176,6 +176,11 @@ public class Woo {
   }
 
     String tier = "";
+    if (myAccount.getBal()<0){
+      tier="tinfoil";
+      System.out.println("You owe money to the casino. You are no longer allowed to play. Adios amigo.");
+      break;
+    }
     if(myAccount.getBal()<2000){
       tier="gold";
     }
@@ -187,7 +192,7 @@ public class Woo {
     }
     if(myAccount.getBal()>22500){
       tier="god";
-      System.out.println("You have reached the highest tier in this casino.Goodbye!");
+      System.out.println("You have reached the highest tier in this casino. You are bankrupting the casino so goodbye!");
       break;
     }
 
